@@ -64,11 +64,14 @@ All of this three tools must be accessible in your environment variable.
 ################
 
 After installed all the required tools, got to ChIPalign directory and install it with python.
+
 	from shell terminal:
 		cd /Path/to/ChIPpipe
 		sudo python setup.py install
+
 This will add to your environment variable the command ChIPalign.
 You also need to indicate path to Rscripts in your .bashrc
+
 	from shell terminal:
 		cd $HOME
 		gedit .bashrc
