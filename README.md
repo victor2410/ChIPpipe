@@ -124,7 +124,7 @@ ChIPalign:
 	Call :
 
 		ChIPpipe ChIPalign [-f FILE.fastq | -1 FILE_R1.fastq -2 FILE_R2.fastq] -g GENOME_PREFIX [options]
---name NAME : prefix to give to output files
+
 	Required arguments:
 
 		-f FASTQ_FILE : full path and name of single end fastq file
