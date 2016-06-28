@@ -40,21 +40,24 @@ This pipeline is implemented in python.
 
 To run this pipeline, these tools are required :
  
-	-bowtie2 (v2.1.0)
+	-bowtie2 (v2.1.0), required for ChIPalign
 		from shell terminal:
 		sudo apt-get install bowtie2
-	-samtools (v1.3.1)
+	-samtools (v1.3.1), required for all
 		from shell terminal:
 		sudo apt-get install samtools
-	-picard tools (v1.95)
+	-picard tools (v1.95), required for ChIPalign
 		from shell terminal:
 		sudo apt-get install picard-tools
-	-spp (v1.10.1) 
+	-spp (v1.10.1), required for CallPeaks and CallPeaks_norep
 		from shell terminal:
 		cd path/to/ChIPpipe/Scripts
 		R CMD INSTALL spp_1.10.1.tar.gz
-	-python (<=v2.7)
-	-R (v3.0.2)
+	-macs2 (v2.1.1), required for CallPeaks_norep
+		from shell terminal:
+		sudo apt-get install macs2
+	-python (<=v2.7), required for all
+	-R (v3.0.2), required for CallPeaks and CallPeaks_norep
 		All .r and .R scripts required are present in the folder Rscripts
 
 All of this three tools must be accessible in your environment variable.
