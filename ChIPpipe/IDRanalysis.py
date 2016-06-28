@@ -7,13 +7,17 @@
 # Date: Jun 23, 2016
 # ======================
 
-# Packages required for this programm
-from subprocess import Popen, PIPE
+"""
+	Package related on idrCode to perform IDR analysis
+"""
+
+# packages required for this programm
+
 from shlex import split
 import subprocess
 from set_default import getPrefix
 
-def consistency(file1, file2, control, outputdir):
+def consistency(file1, file2, control, outputdir): # perform IDR analysis
 	print ""
 	print "IDR analysis for :"+file1+" vs "+file2+"..."
 	tmp1 = getPrefix(file1)
@@ -27,15 +31,15 @@ def consistency(file1, file2, control, outputdir):
 	print "Done"
 	return
 
-def countConsistentPeaks(file1, file2, outputdir, thresh):
+def countConsistentPeaks(file1, file2, outputdir, thresh): # count number of peaks with specified IDR (or lower in resulting file)
 	tmp1 = getPrefix(file1)
 	tmp2 = getPrefix(file2)
 	file_name = outputdir+"/IDR/"+tmp1+"_VS_"+tmp2+"-overlapped-peaks.txt"
-	f = open(file_name,'r')
+	f = open(file_name,'r') # open resulting file
 	lines  = f.readlines()
 	f.close()
 	numb = 0
-	for line in lines:
+	for line in lines: # for each line, if the 11th column is lower or equal to specified threshold, then increment numb
 		value = line.split(" ", 13)
 		if len(value) == 11:
 			if float(value[10]) <= float(thresh):

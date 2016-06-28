@@ -10,13 +10,13 @@
 
 
 """
-    Functions calling for sorting and indexing final bam file :
+    Package called for sorting and indexing final bam file :
 
     - Sorting bam file 
     - Indexing bam file
 """
 
-# Packages required for this programm
+# packages required for this programm
 
 import subprocess
 import os

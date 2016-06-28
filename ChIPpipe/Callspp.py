@@ -7,14 +7,19 @@
 # Date: Jun 23, 2016
 # ======================
 
-# Packages required for this programm
-from subprocess import Popen, PIPE
+"""
+	Package to perform total peak calling in CallPeaks script 
+	or to perform only cross correlation analysis on CallPeaks_norep script
+"""
+
+# packages required for this programm
+
 from shlex import split
 import subprocess
 from set_default import getPrefix
 
 
-def peakCall(file_in, control, outputdir):
+def peakCall(file_in, control, outputdir): # Perform all peak calling with spp
 	print ""
 	print "Peak calling for :"+file_in+"..."
 	outname = outputdir+getPrefix(file_in)
@@ -23,7 +28,7 @@ def peakCall(file_in, control, outputdir):
 	print "Done"
 	return
 
-def estimateParam(chipfile, outputdir, prefix):
+def estimateParam(chipfile, outputdir, prefix): # only perform cross correlation analysis to estimate parameters
 	print ""
 	command1 = "Rscript $RCHIPpipe_PATH/run_spp_nodups.R -c="+chipfile+" -savp -out="+outputdir+"/"+prefix+".tab"
 	subprocess.call(command1, shell=True)

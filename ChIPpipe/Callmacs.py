@@ -7,15 +7,17 @@
 # Date: Jun 27, 2016
 # ======================
 
-# Packages required for this programm
+"""
+	Package to call macs2 following the specified parameters
+"""
 
-from subprocess import Popen, PIPE
+# packages required for this programm
+
 from shlex import split
 import subprocess
-from set_default import getPrefix
 
 
-def peakCallMacs1(chipfile, ctrlfile, outputdir, prefix, thresh, halffrag, fragmentsize):
+def peakCallMacs1(chipfile, ctrlfile, outputdir, prefix, thresh, halffrag, fragmentsize): # peak calling without gives to parameters (let macs2 estimate it itself)
 	command = "macs2 callpeak -t "+chipfile+" -c "+ctrlfile+" -f BED -n "+outputdir+prefix+" -g hs -p "+thresh+" --to-large --nomodel --shift "+str(halffrag)+" --extsize "+str(fragmentsize)+" -B"
 	subprocess.call(command, shell=True)
 

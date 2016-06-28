@@ -17,7 +17,7 @@
    	- Check if required options are specified
 """
 
-# Packages required for this programm
+# packages required for this programm
 
 import os
 import sys
@@ -26,12 +26,12 @@ def checkFile(file_in): # Check the existence of a file
 	if not os.path.isfile(file_in): # If the file not exists, print an error message then exit the programm
 		print "Error, the specified file '"+file_in+"' does not exists"
 		sys.exit(1)
+	return
 
 def checkPath(path_in): # Check if a full path exists
 	if not os.path.exists(path_in): # If a part or all the path does not exists, return false
 		return False
-	else:
-		return True
+	return True
 
 def checkFastq(fastqfile): # Check if a given file is in fastq format
 	checkFile(fastqfile) # Check if the file exist
@@ -48,6 +48,7 @@ def checkFastq(fastqfile): # Check if a given file is in fastq format
 	else: # The extension is different whatever it is, print an error message and then exit the programm
 		print "Error the specified file '"+fastqfile+"' is not in fastq format"
 		sys.exit(1)
+	return
 
 def checkBam(bamfile): # Check if a given file is in fastq format
 	checkFile(bamfile) # Check if the file exist
@@ -57,6 +58,7 @@ def checkBam(bamfile): # Check if a given file is in fastq format
 	else: # The extension is different whatever it is, print an error message and then exit the programm
 		print "Error the specified file '"+bamfile+"' is not in fastq format"
 		sys.exit(1)
+	return
 
 def checkGenome(genomefile): # Check the existence of fasta file genome
 	genome = genomefile + ".fa" 
@@ -68,6 +70,7 @@ def checkGenome(genomefile): # Check the existence of fasta file genome
 	else: # If not exists with '.fasta' extension, mean that the genome files is not in the right format, print an error message and then exit the programm
 		print "Error, the specified file '"+genomefile+"' cannot be find"
 		sys.exit(1)
+	return
 
 
 def checkRequiredCa(seq, fastqfile2, genome): # Check if all required option are specified
@@ -81,6 +84,7 @@ def checkRequiredCa(seq, fastqfile2, genome): # Check if all required option are
 	if genome == '': # if no genome prefix have been specified, means that required '-g' options have not been used, print an error message and then exit the programm
 		print "Error, a reference genome file is required to perform this analysis, please re-run with the option -g"
 		sys.exit(1)
+	return
 
 def checkRequiredCp(rep1, rep2, ctrl1): # Check if all required option are specified
 	if rep1 == '': # means that no options '-1' have been specified, print an error message and exit the programm
@@ -92,8 +96,10 @@ def checkRequiredCp(rep1, rep2, ctrl1): # Check if all required option are speci
 	if ctrl1 == '': # means that no control file is given , print an error message and exit the programm
 		print "Error, at least one control file (input) is expected to perform this analysis, please re-run with the option --c1"
 		sys.exit(1)
+	return
 
 def checkRequiredCpnr(file_in, ctrl): # Check if all required option are specified
 	if file_in == '' or ctrl == '': # means that no options '-1' have been specified, print an error message and exit the programm
  		print "Error the options -f or -c or both have not been used, these option are required to run this programm"
 		sys.exit(1)
+	return

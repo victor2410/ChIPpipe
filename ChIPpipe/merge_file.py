@@ -7,8 +7,12 @@
 # Date: Jun 23, 2016
 # ======================
 
-# Packages required for this programm
-from subprocess import Popen, PIPE
+"""
+	package used to merge as one file two files
+"""
+
+# packages required for this programm
+
 from shlex import split
 import subprocess
 

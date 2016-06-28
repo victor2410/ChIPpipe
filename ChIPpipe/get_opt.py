@@ -8,16 +8,16 @@
 # ======================
 
 """
-    Functions calling for getting options parameters:
+    package calling for getting options parameters:
 """
 
-# Packages required for this programm
+# packages required for this programm
 
 import os
 import sys
 import getopt
-from check import *
-from print_message import *
+from check import checkFastq, checkBam, checkPath, checkGenome, checkFile
+from print_message import usageCa, usageCp, usageCpnr, usage
 
 # Read options
 def readOptCa(argv, outputdir, selectodir, filterqual, unmapped, filtercoord, indexGenome, rmvdup, sorting, indexBam, coordinatefile, prefix, genome, minqual, fastqfile, fastqfile1, fastqfile2, seq):

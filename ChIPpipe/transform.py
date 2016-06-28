@@ -7,13 +7,17 @@
 # Date: Jun 23, 2016
 # ======================
 
-# Packages required for this programm
-from subprocess import Popen, PIPE
+"""
+	Package to convert file in different format and rename file
+"""
+
+# packages required for this programm
+
 from shlex import split
 import subprocess
 from set_default import getPrefix
 
-def toTagAlign(file_in, outputdir):
+def toTagAlign(file_in, outputdir): # convert given bam file to tagAlign file
 	filename= getPrefix(file_in)
 	tagAlignname = outputdir+filename+".tagAlign.gz"
 	print "Transformation for file :"+file_in+"..."
@@ -22,7 +26,7 @@ def toTagAlign(file_in, outputdir):
 	print "Transformation achieved..."
 	return
 
-def newName(file_in, outputdir):
+def newName(file_in, outputdir): # get new tagAlign file name
 	fileprefix = getPrefix(file_in)
 	newname = outputdir+fileprefix+".tagAlign.gz"
 	return newname

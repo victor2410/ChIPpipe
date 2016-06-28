@@ -9,21 +9,21 @@
 # ======================
 
 """
-   Main function for ChIPalign tools
+   Main package for ChIPalign tools
 """
 
-# Packages required for this programm
+# packages required for this programm
 
 import os
 import sys
 import getopt
-from print_message import *
-from set_default import *
-from get_opt import *
-from check import *
-from Bowtie import *
-from filter_reads import *
-from sorting import *
+from print_message import usageCa, parametersSe, parametersPe, welcomeCa, running, goodbyeCa
+from set_default import initParamCa, createOdir
+from get_opt import readOptCa
+from check import checkRequiredCa
+from Bowtie import genomeIndex, readsAlignment
+from filter_reads import unmappedFilter, minQFilter, removeDup, coordFilter
+from sorting import sortAndIndexFile
 
 def mainCa(argv):
 	if len(argv) == 1: # if any arguments are given print usage message and then exit the programm

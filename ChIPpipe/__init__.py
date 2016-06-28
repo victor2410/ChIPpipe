@@ -9,7 +9,7 @@
 # ======================
 
 """
-  	Pipeline python pour alignement et filtration de données de ChIP-seq
+  	python pipeline for ChIP-seq data processing
 """
 __version__ = "0.0.1"
 

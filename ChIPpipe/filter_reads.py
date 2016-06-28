@@ -10,7 +10,7 @@
 
 
 """
-    Functions calling for filter out reads from bam file :
+    Packages calling for filter out reads from bam file :
  
    	- Unmapped reads
    	- Reads with low mapping quality
@@ -18,7 +18,7 @@
    	- Reads in blacklist regions
 """
 
-# Packages required for this programm
+# packages required for this programm
 
 import subprocess
 import os

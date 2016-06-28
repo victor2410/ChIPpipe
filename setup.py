@@ -1,5 +1,15 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+
+# setup.py
+# ======================
+# Author: Gaborit Victor
+# Date: Jun 28, 2016
+# ======================
+
+"""
+    install ChIPpipe package file
+"""
  
 from setuptools import setup, find_packages
 import ChIPpipe

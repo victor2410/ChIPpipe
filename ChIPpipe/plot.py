@@ -7,8 +7,11 @@
 # Date: Jun 28, 2016
 # ======================
 
-# Packages required for this programm
-from subprocess import Popen, PIPE
+"""
+	Package calling Rscripts to plot IDR results for all replicates and pseudo-replicates
+"""
+
+# packages required for this programm
 from shlex import split
 import subprocess
 import os
@@ -19,8 +22,8 @@ def plotResults(outputdir, rep1, rep2, rep1pr1, rep1pr2, rep2pr1, rep2pr2, poolp
 	tmp1 = getPrefix(rep1)
 	tmp2 = getPrefix(rep2)
 	fileout = outputdir+"/IDR/plots/"+tmp1+"_VS_"+tmp2
-	filename = outputdir+"/IDR/"+tmp1+"_VS_"+tmp2
-	command1 = "Rscript $RCHIPpipe_PATH/batch-consistency-plot.r 1 "+fileout+" "+filename+" $RCHIPpipe_PATH/functions-all-clayton-12-13.r"
+	filename = outputdir+"/IDR/"+tmp1+"_VS_"+tmp2 
+	command1 = "Rscript $RCHIPpipe_PATH/batch-consistency-plot.r 1 "+fileout+" "+filename+" $RCHIPpipe_PATH/functions-all-clayton-12-13.r" # call R scripts to plot results
 	command2 = "Rscript $RCHIPpipe_PATH/IDR_results_plots.r -r="+filename+"-overlapped-peaks.txt -o="+fileout
 	subprocess.call(command1, shell=True)
 	subprocess.call(command2, shell=True)

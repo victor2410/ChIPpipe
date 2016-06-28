@@ -8,19 +8,19 @@
 # ======================
 
 """
-  	Functions to setting parameters to default values:
+  	Package to setting parameters to default values:
 
   	- Setting all parameters to default
   	- Get a prefix from a file name
   	- Create default output directory
 """
 
-# Packages required for this programm
+# packages required for this programm
 
 import os
 import sys
 import re
-from check import *
+from check import checkPath
 
 def initParamCa(): # Initialize all parameters to default values
 	outputdir = os.getcwd()+'/ChIPalign_out'
