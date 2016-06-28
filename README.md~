@@ -106,41 +106,32 @@ Check software version
 			ChIPpipe.0.0.1
 
 
-#########
-# Usage #
-#########
+#############
+# Arguments #
+#############
 
-ChIPalign:
-	
-	Call :
+Required arguments :
 
-		ChIPpipe ChIPalign [-f FILE.fastq | -1 FILE_R1.fastq -2 FILE_R2.fastq] -g GENOME_PREFIX [options]
+	-f FASTQ_FILE : full path and name of single end fastq file
+	or
+	-1 FASTQ_FILE_R1 and -2 FASTQ_FILE_R2 : full path and name of paired end R1 and R2 files
+	-g GENOME_PREFIX: full path and prefix of genome reference fasta file (without '.fa' or '.fasta' extension)
 
-	Required arguments:
+Optionnal arguments :
 
-		-f FASTQ_FILE : full path and name of single end fastq file
-		or
-		-1 FASTQ_FILE_R1 and -2 FASTQ_FILE_R2 : full path and name of paired end R1 and R2 files
-		-g GENOME_PREFIX: full path and prefix of genome reference fasta file (without '.fa' or '.fasta' extension)
+	-o DIRECTORY : to specify the place you want your output files in (default : create ChIPalign_out in current directory)
+	--name PREFIX : prefix name to give to output files (default is fastqfile prefix)
+	--index : index the reference genome (required for alignment but just need to be done once) (default : OFF)
+	-q INT : filter reads with mapping quality lower than specific threshold (INT) (default : OFF)
+	-F : filter unmapped reads (default : OFF)
+	-L FILE : filter reads that mapp inside specific regions like blacklist regions given in specified FILE (default : OFF)
+	--rmdup : filter PCR duplicates and non uniquely mapable reads (default : OFF)
+	--sort : sort final bam file per reads position (default : OFF)
+	--bamIndex : index final bam file (required --sort option) (default : OFF)
 
-	Optionnal arguments :
-
-		-o DIRECTORY : to specify the place you want your output files in (default : create ChIPalign_out in current directory)
-		--name PREFIX : prefix name to give to output files (default is fastqfile prefix)
-		--index : index the reference genome (required for alignment but just need to be done once) (default : OFF)
-		-q INT : filter reads with mapping quality lower than specific threshold (INT) (default : OFF)
-		-F : filter unmapped reads (default : OFF)
-		-L FILE : filter reads that mapp inside specific regions like blacklist regions given in specified FILE (default : OFF)
-		--rmdup : filter PCR duplicates and non uniquely mapable reads (default : OFF)
-		--sort : sort final bam file per reads position (default : OFF)
-		--bamIndex : index final bam file (required --sort option) (default : OFF)
-	
 ##########
 # Output #
 ##########
 
-
-ChIPalign:
-
-	This pipeline will produce in a directory (depend on -o option) a unique bam file named PREFIX.bam and an indexed bam file named PREFIX.bam.bai (if --bamIndex was specified).
+This pipeline will produce in a directory (depend on -o option) a unique bam file named PREFIX.bam and an indexed bam file named PREFIX.bam.bai (if --bamIndex was specified).
 
