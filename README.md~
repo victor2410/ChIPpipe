@@ -170,6 +170,23 @@ CallPeaks:
 
 CallPeaks_norep:
 
+	Call:
+
+		ChIPpipe CallPeaks_norep -f FILE.bam -c CONTROL_FILE.bam [options]
+	
+	Required Arguments:
+
+		-f FILE	: full path and name of alignment file to analyze (bam format)
+		-c FILE	: full path and name of Input alignment file to use (bam format)
+
+	Optionnal Arguments:
+
+		-o OUTPUTDIRECTORY	: full path and name of directory in wich writes all output files (default create a new repositorie in the current directory)
+		--thresh STR	: pvalue threshold for peak calling (ex : 1e-7 ; default = 1e-3)
+		--nomodel	: using estimated fragment length by phantomPeakQualtools for peakCalling than macs2 prediction model
+		--name NAME : prefix to give to output files (default is CallPeaks_macs)
+		-h, --help 	: usage
+
 
 	
 ##########
