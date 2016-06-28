@@ -21,7 +21,7 @@
 def usageCa():
 	print "ChIPalign, ChIP-seq tool for alignment and filtration of reads"
 	print "Usage : ChIPpipe ChIPalign [-f <path/file.fastq(.gz)> | -1 <path/fileR1.fastq(.gz)> -2 <path/file2.fastq(.gz)>] -g <path/GenomeDirectory/prefix> [options]"
-	print "\t-h, --help 	: print this usage message."
+	print "\t-h, --help 	: print this usage message"
 	print "\nREQUIRED ARGUMENTS"
 	print "\t-f FILE	: full path and name of single end fastq file to analyze(must be .fastq or .fastq.gz)"
 	print "\t or"	
@@ -30,18 +30,18 @@ def usageCa():
 	print "\nOPTIONNAL ARGUMENTS"
 	print "\t-o OUTPUTDIRECTORY	: full path and name of directory in wich writes all output files(default create a new repositorie in the current directory)"
 	print "\t--index	: indexing genome files, must be select if the genome have not been indewed before(defaut : OFF)"
-	print "\t-q INT : reads filtering according to the minimum mapping quality specified\n"
+	print "\t-q INT : reads filtering according to the minimum mapping quality specified"
 	print "\t-F : filter out unmapped reads"
 	print "\t-L FILE : remove reads mapped in coordinate files given(blacklist)"
 	print "\t--rmdup : remove PCR duplicates and non unique mappable reads"
-	print "\t--sort : sort final bam file\n"
+	print "\t--sort : sort final bam file"
 	print "\t--bamIndex : indexing final bam file (requiring --sort)"
 	print "\t--name NAME : prefix to give to output files"
 
 def usageCp():
 	print "CallPeaks, PeakCalling tool related on spp and ENCODE IDR analysis pipeline"
-	print "Usage : ChIPpipe CallPeaks -1 <path/fileRep1.tagAlign(.gz)> -2 <path/fileRep2.tagAlign(.gz)> --c1 <path/fileControl.tagAlign.gz> [options]"
-	print "\t-h, --help 	: usage."
+	print "Usage : ChIPpipe CallPeaks -1 <path/fileRep1.bam> -2 <path/fileRep2.bam> --c1 <path/fileControl.bam> [options]"
+	print "\t-h, --help 	: print this usage message"
 	print "REQUIRED ARGUMENTS"
 	print "\t-1 FILE_REP1	: full path and name of replicate 1 file (bam file)"
 	print "\t-2 FILE_REP2	: full path and name of replicate 2 file (bam file)"
@@ -53,12 +53,11 @@ def usageCp():
 	print "\t--sets	: Create final peak sets (conservative and optimum) corresponding to IDR threshold (require --idr option) (default :OFF)"
 	print "\t--no-plots	: Do not plot IDR results (default : ON)"
 	print "\t--name NAME : prefix to give to output files (default is CallPeaks)"
-	print "\t--version : version of this programm"
 
 def usageCpnr():
 	print "CallPeaks_norep, PeakCalling for sample without biological replicates related on MACS2"
 	print "Usage : ChIPpipe CallPeaks_norep -f <path/file.bam>-c <path/control.bam> [options]"
-	print "\t-h, --help 	: usage"
+	print "\t-h, --help 	: print this usage message"
 	print "REQUIRED ARGUMENTS"
 	print "\t-f FILE	: full path and name of alignment file to analyze (bam format)"
 	print "\t-c FILE	: full path and name of Input alignment file to use (bam format)"
@@ -80,7 +79,7 @@ def usage():
 	print "\tCallPeaks_norep\tPeakCalling when no biological replicates are available"
 	print ""
 	print "OPTIONAL ARGUMENTS"
-	print "\t-h, --help 	: usage."
+	print "\t-h, --help 	: print this usage message"
 	print "\t--version : version of ChIPpipe"
 
 

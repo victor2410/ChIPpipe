@@ -7,11 +7,14 @@
 # Date: Jun 28, 2016
 # ======================
 
+"""
+	Package for creating final peaks sets
+"""
+
 # Packages required for this programm
 from subprocess import Popen, PIPE
 from shlex import split
 import subprocess
-import os
 from set_default import getPrefix
 
 def createFinalSets(poolfile, control, nt, np, outputdir, prefix):

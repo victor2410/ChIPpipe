@@ -60,7 +60,7 @@ To run this pipeline, these tools are required :
 	-R (v3.0.2), required for CallPeaks and CallPeaks_norep
 		All .r and .R scripts required are present in the folder Rscripts
 
-All of this three tools must be accessible in your environment variable.
+All of these tools must be accessible in your environment variable.
 
 ################
 # Installation #
@@ -118,9 +118,9 @@ Check software version
 			ChIPpipe.0.0.1
 
 
-#########
-# Usage #
-#########
+################
+# Subprogramms #
+################
 
 ChIPalign:
 	
