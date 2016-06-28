@@ -121,7 +121,7 @@ Check software version
 
 ChIPalign:
 	
-	Call :
+	Call:
 
 		ChIPpipe ChIPalign [-f FILE.fastq | -1 FILE_R1.fastq -2 FILE_R2.fastq] -g GENOME_PREFIX [options]
 
@@ -132,7 +132,7 @@ ChIPalign:
 		-1 FASTQ_FILE_R1 and -2 FASTQ_FILE_R2 : full path and name of paired end R1 and R2 files
 		-g GENOME_PREFIX: full path and prefix of genome reference fasta file (without '.fa' or '.fasta' extension)
 
-	Optionnal arguments :
+	Optionnal arguments:
 
 		-o DIRECTORY : to specify the place you want your output files in (default : create ChIPalign_out in current directory)
 		--name PREFIX : prefix name to give to output files (default is fastqfile prefix)
@@ -143,6 +143,51 @@ ChIPalign:
 		--rmdup : filter PCR duplicates and non uniquely mapable reads (default : OFF)
 		--sort : sort final bam file per reads position (default : OFF)
 		--bamIndex : index final bam file (required --sort option) (default : OFF)
+		-h, --help 	: usage
+
+CallPeaks:
+	
+	Call:
+	
+		ChIPpipe CallPeaks -1 FILE_REP1.bam -2 FILE_REP2.bam --c1 CONTROL_FILE.bam [options]
+	
+	Required Arguments:
+
+		-1 FILE_REP1	: full path and name of replicate 1 file (bam file)
+		-2 FILE_REP2	: full path and name of replicate 2 file (bam file)
+		--c1 FILE_CONTROL	:  full path and name of control file (bam file)
+
+	Optionnal Arguments:
+
+		--c2 FILE_CONTROL	:  full path and name of second control file (if there is one) (bam file)
+		-o DIRECTORY	: full path to directory in wich write all output files (default create a CallPeaks_out directory in the current directory)
+		--idr FLOAT	: Perform IDR analysis on output peakCalling files with a specified threshold (0.01 or 0.02 for transcription factor) (default : OFF)
+		--sets	: Create final peak sets (conservative and optimum) corresponding to IDR threshold (require --idr option) (default :OFF)
+		--no-plots	: Do not plot IDR results (default : ON)
+		--name NAME : prefix to give to output files (default is CallPeaks)
+		-h, --help 	: usage
+
+
+CallPeaks_norep:
+
+	Call:
+
+		ChIPpipe CallPeaks_norep -f FILE.bam -c CONTROL_FILE.bam [options]
+	
+	Required Arguments:
+
+		-f FILE	: full path and name of alignment file to analyze (bam format)
+		-c FILE	: full path and name of Input alignment file to use (bam format)
+
+	Optionnal Arguments:
+
+		-o OUTPUTDIRECTORY	: full path and name of directory in wich writes all output files (default create a new repositorie in the current directory)
+		--thresh STR	: pvalue threshold for peak calling (ex : 1e-7 ; default = 1e-3)
+		--nomodel	: using estimated fragment length by phantomPeakQualtools for peakCalling than macs2 prediction model
+		--name NAME : prefix to give to output files (default is CallPeaks_macs)
+		-h, --help 	: usage
+
+
 	
 ##########
 # Output #
@@ -152,4 +197,10 @@ ChIPalign:
 ChIPalign:
 
 	This pipeline will produce in a directory (depend on -o option) a unique bam file named PREFIX.bam and an indexed bam file named PREFIX.bam.bai (if --bamIndex was specified).
+
+CallPeaks:
+
+
+CallPeaks_norep:
+
 
