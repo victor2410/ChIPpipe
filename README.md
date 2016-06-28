@@ -8,11 +8,17 @@ For questions, comments that you should be interesting for improve this pipeline
 see also:
 
 -> samtools documentation : http://samtools.sourceforge.net/
+
 -> bowtie2 documentation : http://bowtie-bio.sourceforge.net/bowtie2/index.shtml
+
 -> picard-tools documentation : https://broadinstitute.github.io/picard/
+
 -> python documentation : https://www.python.org/
+
 -> spp documentation : http://compbio.med.harvard.edu/Supplements/ChIP-seq/
+
 -> macs2 documentation : https://github.com/taoliu/MACS
+
 -> ENCODE IDR analysis : https://sites.google.com/site/anshulkundaje/projects/idr
 
 
@@ -115,7 +121,7 @@ ChIPalign:
 	Call :
 
 		ChIPpipe ChIPalign [-f FILE.fastq | -1 FILE_R1.fastq -2 FILE_R2.fastq] -g GENOME_PREFIX [options]
-
+--name NAME : prefix to give to output files
 	Required arguments:
 
 		-f FASTQ_FILE : full path and name of single end fastq file
