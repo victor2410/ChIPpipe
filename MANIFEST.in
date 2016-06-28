@@ -1,4 +1,2 @@
 include *.md
 recursive-include Rscripts *
-recursive-include idrCode *
-recursive-include idrCode/genome_tables *
