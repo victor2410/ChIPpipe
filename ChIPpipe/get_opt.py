@@ -16,14 +16,50 @@
 import os
 import sys
 import getopt
-from check import checkFastq, checkBam, checkPath, checkGenome, checkFile
-from print_message import usageCa, usageCp, usageCpnr, usage
+from check import checkFastq, checkBam, checkPath, checkGenome, checkFile, checkLib
+from print_message import usageCa, usageCp, usageCpnr, usage, usageTq
+
+def readOptTq(argv, outputdir, selectodir, fastqfile1, fastqfile2, fastqfile, seq1, seq2, lib):
+	try:                                
+	    opts, args = getopt.getopt(argv, "hf:1:2:o:", ["help", "lib=", "adapt="]) # List of all short and long options possible
+	except getopt.GetoptError:
+	    usageTq()
+	    sys.exit(2)
+	for opt, arg in opts:
+		if opt in ("-h", "--help"): # Print usage message
+			usageTq()
+			sys.exit()
+		elif opt == '-f': # for SE fastq file
+			checkFastq(arg)
+			fastqfile = arg
+			seq1 = 'SE'
+		elif opt == '-1': # For R1 fastq file
+			checkFastq(arg)
+			fastqfile1 = arg
+			seq1 = 'PE'
+		elif opt == '-2': # For R2 fastq file
+			checkFastq(arg)
+			fastqfile2 = arg
+		elif opt == '-o': # Output directory is specified
+			if not checkPath(arg):
+				print "Error, the specified path '"+arg+"' does not exists"
+				sys.exit(1)
+			outputdir = arg
+			selectodir = 'true'
+		elif opt == '--lib': # For control file
+			checkLib(arg)
+			lib = arg
+		elif opt == '--adapt': # For supplemental control file
+			if arg != 'SE' and arg != 'PE':
+				print "Error, wrong parameter used for --adapt options, must be 'SE' or 'PE'"
+				sys.exit(1)
+			seq2 = arg
+	return outputdir, selectodir, fastqfile1, fastqfile2, fastqfile, seq1, seq2, lib
 
 # Read options
 def readOptCa(argv, outputdir, selectodir, filterqual, unmapped, filtercoord, indexGenome, rmvdup, sorting, indexBam, coordinatefile, prefix, genome, minqual, fastqfile, fastqfile1, fastqfile2, seq):
-	__version__ = "0.0.1"
 	try:                                
-	    opts, args = getopt.getopt(argv, "hf:1:2:g:o:q:FL:", ["help", "index", "rmdup", "sort", "bamIndex", "version", "name="]) # List of all short and long options possible
+	    opts, args = getopt.getopt(argv, "hf:1:2:g:o:q:FL:", ["help", "index", "rmdup", "sort", "bamIndex", "name="]) # List of all short and long options possible
 	except getopt.GetoptError:
 	    usageCa()
 	    sys.exit(2)
@@ -70,15 +106,11 @@ def readOptCa(argv, outputdir, selectodir, filterqual, unmapped, filtercoord, in
 			indexBam = 'ON'
 		elif opt == '--name': # Prefix to give to output file
 			prefix = arg
-		elif opt == '--version': # Print software version
-			print "ChIPalign."+__version__
-			sys.exit(0)
 	return outputdir, selectodir, filterqual, unmapped, filtercoord, indexGenome, rmvdup, sorting, indexBam, coordinatefile, prefix, genome, minqual, fastqfile, fastqfile1, fastqfile2, seq
 
 def readOptCp(argv, outputdir, selectodir, rep1, rep2, ctrl1, ctrl2, ctrlsup, idr, idrthresh, finalsets, plot, prefix):
-	__version__ = "0.0.1"
 	try:                                
-	    opts, args = getopt.getopt(argv, "h1:2:o:", ["help", "c1=", "c2=", "idr=", "sets", "no-plots", "name=", "version"]) # List of all short and long options possible
+	    opts, args = getopt.getopt(argv, "h1:2:o:", ["help", "c1=", "c2=", "idr=", "sets", "no-plots", "name="]) # List of all short and long options possible
 	except getopt.GetoptError:
 	    usageCp()
 	    sys.exit(2)
@@ -114,9 +146,6 @@ def readOptCp(argv, outputdir, selectodir, rep1, rep2, ctrl1, ctrl2, ctrlsup, id
 			plot = 'OFF'
 		elif opt == '--name': # Prefix to give to output file
 			prefix = arg
-		elif opt == '--version': # Print software version
-			print "CallPeaks."+__version__
-			sys.exit(0)
 	return outputdir, selectodir, rep1, rep2, ctrl1, ctrl2, ctrlsup, idr, idrthresh, finalsets, plot, prefix
 
 def readOptCpnr(argv, outputdir, selectodir, bamfile, ctrlfile, thresh, model, prefix ):

@@ -72,6 +72,24 @@ def checkGenome(genomefile): # Check the existence of fasta file genome
 		sys.exit(1)
 	return
 
+def checkLib(lib): # check if the integer specified is 0 or 1
+	if int(lib) != 0 and int(lib) != 1: # if integer not expected, print an error message and then exit the programm
+		print "Error, library must be 0 for 1 for sequenceur used, please check with -h option"
+		sys.exit(1)
+	return
+
+def checkRequiredTq(fastqfile, fastqfile1, fastqfile2, lib): # Check if all required option are specified
+	if fastqfile1 == '' and fastqfile2 == '': # means that no options '-1' and '-2' have been specified
+		if fastqfile == '': # means that no options '-f' have been specified, print an error message and exit the programm
+ 			print "Error the options -f or -1 and -2 have not been used, these option are required to run this programm"
+			sys.exit(1)
+	elif fastqfile != '': # means that '-f', '-1' an '-2' options have been used together, print an error message and then exit
+		print "Error the options -f or -1 and -2 have been used together, use -f option alone or -1 and -2 option together"
+		sys.exit(1)
+	if lib == 2: # means that '--lib options have not been used'
+		print "Error, option --lib is required to perform this analyze"
+		sys.exit(1)
+	return
 
 def checkRequiredCa(seq, fastqfile2, genome): # Check if all required option are specified
 	if seq == '': # means that no options '-f' or '-1/-2' have been specified, print an error message and exit the programm

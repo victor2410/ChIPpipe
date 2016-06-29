@@ -18,6 +18,19 @@
   	- End of the programm
 """
 
+def usageTq(): 
+	print "TrimQual, quality check and trimming tools for ChIP-seq fastq files"
+	print "Usage : ChIPpipe trimQual [-f path/file.fastq(.gz)> | -1 <path/fileR1.fastq(.gz)> -2 <path/fileR2.fastq(.gz)>] --lib INT [options]"
+	print "\t-h, --help 	: print this usage message"
+	print "\nREQUIRED ARGUMENTS"
+	print "\t-f FILE	: full path and name of single end fastq file to analze (could be .fastq or .fastq.gz)"
+	print "\t or"	
+	print "\t-1 FILE_R1 -2 FILE_R2	: full path and name of fastq file R1 (-1) and R2 (-2) for paired end data (could be .fastq or .fastq.gz)"
+	print "\--lib INT	: select the adaptator library following used sequencer (0: Illumina Genome Analyzer IIx ; 1: Hi Seq 2000)"
+	print "\nOPTIONNAL ARGUMENTS"
+	print "\t-o DIRECTORY	: output directory in which put all output files (default create trimQual_out in current directory)"	
+	print "\t--adapt <PE|SE>	: Sequencing library used for adaptators (default depend on -f (SE) or -1 (PE) options)"	
+
 def usageCa():
 	print "ChIPalign, ChIP-seq tool for alignment and filtration of reads"
 	print "Usage : ChIPpipe ChIPalign [-f <path/file.fastq(.gz)> | -1 <path/fileR1.fastq(.gz)> -2 <path/file2.fastq(.gz)>] -g <path/GenomeDirectory/prefix> [options]"
@@ -69,11 +82,12 @@ def usageCpnr():
 
 def usage():
 	print "usage ChIPpipe [-h] [--version]"
-	print "\t{ChIPalign, CallPeaks, CallPeaks_norep}"
+	print "\t{trimQual, ChIPalign, CallPeaks, CallPeaks_norep}"
 	print ""
 	print "ChIPpipe, pipeline for alignment and peak calling of ChIP-Seq datas"
 	print ""
 	print "POSITIONAL COMMANDS:"
+	print "\ttrimQual\tQuality check and trimming of ChIP-seq fastq"
 	print "\tChIPalign\tAlignment and filtration of ChIP-Seq fastq"
 	print "\tCallPeaks\tPeakCalling based on IDR analysis protocol proposed by ENCODE (requiring biological replicates)"
 	print "\tCallPeaks_norep\tPeakCalling when no biological replicates are available"
@@ -82,6 +96,13 @@ def usage():
 	print "\t-h, --help 	: print this usage message"
 	print "\t--version : version of ChIPpipe"
 
+def welcomeTq():
+	print ""
+	print "\t############"
+	print "\t# trimQual #"
+	print "\t############"
+	print ""
+	print "\tTrimQual, quality check and trimming tools for ChIP-seq fastq files"
 
 def welcomeCa():
 	print ""
@@ -106,6 +127,31 @@ def welcomeCpnr():
 	print "\t###################"
 	print ""
 	print "\tCallPeaks_norep, PeakCalling for sample without biological replicates related on MACS2"
+
+def parametersTq(outputdir, fastqfile, fastqfile1, fastqfile2, adaptaters, lib, seq1, seq2):
+	print ""
+	print "\t################################"
+	print "\t# PARAMETERS USED FOR THIS RUN #"
+	print "\t################################"
+	print ""
+	if seq1 == 'SE':
+		print "fastq file :"+fastqfile
+		print "datas are Single End"
+	else:
+		print "fastq file R1 :"+fastqfile1
+		print "fastq file R2 :"+fastqfile2
+		print "datas are paired end"
+	print "output directory :"+outputdir
+	if int(lib) == 0:
+		print "sequencer used to get reads: Illumina Genome Analyzer IIx"
+	else:
+		print "sequencer used to get reads: Hi Seq 2000"
+	if seq2 != '':
+		if seq2 == 'SE':
+			print "searching for single end adaptator"
+		else:
+			print "searching for paired end adaptator"
+	print "trimmomatic adaptator library: "+adaptaters
 
 def parametersSe(fastqfile, genome, outputdir, filterqual, minqual, unmapped, filtercoord, coordinateFile, indexGenome, rmvdup, sorting, indexBam, prefix):
 	print ""
@@ -220,5 +266,3 @@ def goodbyeCp():
 	print "\t#####################"
 	print "\t# ANALYSIS ACHIEVED #"
 	print "\t#####################"
-
-

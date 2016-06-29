@@ -22,6 +22,17 @@ import sys
 import re
 from check import checkPath
 
+def initParamTq():
+	outputdir = os.getcwd()+'/trimQual_out'
+	selectodir = 'false'
+	fastqfile1 = str()
+	fastqfile2 = str()
+	fastqfile = str()
+	seq1 = str()
+	seq2 = str()
+	lib = 2
+	return outputdir, selectodir, fastqfile1, fastqfile2, fastqfile, seq1, seq2, lib
+
 def initParamCa(): # Initialize all parameters to default values
 	outputdir = os.getcwd()+'/ChIPalign_out'
 	selectodir = 'false'
@@ -76,3 +87,16 @@ def createOdir(directory): # Create an output directory in the current directory
 		return
 	else:
 		os.mkdir(directory)
+
+def setAdapts(seq1, seq2, lib):
+	if int(lib) == 0:
+		if seq2 == '':
+			adaptaters="TruSeq2-"+seq1+".fa"
+		else:
+			adaptaters="TruSeq2-"+seq2+".fa"
+	else:
+		if seq2 == '':
+			adaptaters="TruSeq2-"+seq1+".fa"
+		else:
+			adaptaters="TruSeq2-"+seq2+".fa"
+	return adaptaters

@@ -8,7 +8,8 @@
 # ======================
 
 """
-   Main wrapper for pipeline to analyze ChIP-Seq datas, 3 subfunctions :
+   Main wrapper for pipeline to analyze ChIP-Seq datas, 4 subfunctions :
+    - trimQual
    	- ChIPalign
    	- CallPeaks
    	- CallPeaks_norep
@@ -20,6 +21,7 @@ import sys
 from ChIPalign import mainCa
 from CallPeaks import mainCp
 from CallPeaks_norep import mainCpnr
+from trimQual import mainTq
 from print_message import usage
 from get_opt import readOpt
 
@@ -37,6 +39,8 @@ def main():
 		sys.exit(0)
 	elif sys.argv[1] == 'CallPeaks_norep': # Call to CallPeaks_norep tool
 		mainCpnr(sys.argv[1:])
+	elif sys.argv[1] == 'trimQual': # Call to trimQual tool
+		mainTq(sys.argv[1:])
 	else: # Wrong parameter specified, print usage message and then exit
 		print "Wrong parameter specified, please check your options"
 		usage()
