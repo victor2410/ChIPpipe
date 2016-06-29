@@ -23,6 +23,8 @@ see also:
 
 -> macs2 documentation : https://github.com/taoliu/MACS
 
+-> R documentation : https://www.r-project.org/other-docs.html
+
 -> ENCODE IDR analysis : https://sites.google.com/site/anshulkundaje/projects/idr
 
 
