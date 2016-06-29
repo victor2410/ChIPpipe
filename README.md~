@@ -226,6 +226,12 @@ CallPeaks_norep:
 # Output #
 ##########
 
+trimQual :
+	
+	This tool will produce a folder (depend on -o option) which will contains two subfolders:
+
+		-> One fasqtc_report folder which contains all fastQC quality check outputs
+		-> One fastq_trim folder which contains all fastq files trimmed  
 
 ChIPalign:
 
