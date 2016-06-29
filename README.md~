@@ -70,6 +70,9 @@ To run this pipeline, these tools are required :
 		sudo apt-get install macs2
 	-python (<=v2.7), required for all
 	-R (v3.0.2), required for CallPeaks and CallPeaks_norep
+		from shell terminal:
+		sudo apt-get install r-base
+		sudo apt-get install r-base-core
 		All .r and .R scripts required are present in the folder Scripts
 
 For fastqc, bowtie2, samtools, picard-tools, macs2, python and R, these tools must be accessible in your $PATH environment variable.
