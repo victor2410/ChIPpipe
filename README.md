@@ -81,13 +81,13 @@ For fastqc, bowtie2, samtools, picard-tools, macs2, python and R, these tools mu
 # Installation #
 ################
 
-After installed all the required tools, go to ChIPalign directory and install it with python.
+After installed all the required tools, go to ChIPpipe directory and install it with python.
 
 	from shell terminal:
 		cd /Path/to/ChIPpipe
 		sudo python setup.py install
 
-This will add to your environment variable the command ChIPalign.
+This will add to your environment variable the command ChIPpipe.
 You also need to indicate path to Rscripts in your .bashrc
 
 	from shell terminal:

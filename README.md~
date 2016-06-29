@@ -81,7 +81,7 @@ For fastqc, bowtie2, samtools, picard-tools, macs2, python and R, these tools mu
 # Installation #
 ################
 
-After installed all the required tools, got to ChIPalign directory and install it with python.
+After installed all the required tools, go to ChIPalign directory and install it with python.
 
 	from shell terminal:
 		cd /Path/to/ChIPpipe
