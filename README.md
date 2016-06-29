@@ -7,6 +7,10 @@
 For questions, comments that you should be interesting for improve this pipeline, please send email to victor.gaborit2@gmail.com
 see also:
 
+-> fastqc documentation : http://www.bioinformatics.babraham.ac.uk/projects/fastqc/
+
+-> Trimmomatic documentation : http://www.usadellab.org/cms/?page=trimmomatic
+
 -> samtools documentation : http://samtools.sourceforge.net/
 
 -> bowtie2 documentation : http://bowtie-bio.sourceforge.net/bowtie2/index.shtml
@@ -28,6 +32,7 @@ see also:
 
 This pipeline is created to perform full analysis of ChIP-seq datas. This pipeline is only automatization of existing tools or pipelines created to perform ChIP-seq datas analysis in particular case there is no biological replicates. There are three differents programm in this pipeline :
 
+	-> trimQual : Quality check and trimming of fastq files
 	-> ChIPalign : Alignment and filtration of ChIP-seq fastq files
 	-> CallPeaks : Peak Calling based on ENCODE protocol with IDR analysis (requiring replicates)
 	-> CallPeaks_norep : Peak Calling related on macs2 and used when no replicates are available
@@ -40,6 +45,11 @@ This pipeline is implemented in python.
 
 To run this pipeline, these tools are required :
  
+	-fastqc (v0.10.1), required for trimQual
+		from shell terminal:
+		sudo apt-get install fastqc
+	-Trimmomatic (v0.35) required for trimQual
+		present in the folder Scripts
 	-bowtie2 (v2.1.0), required for ChIPalign
 		from shell terminal:
 		sudo apt-get install bowtie2
@@ -58,9 +68,9 @@ To run this pipeline, these tools are required :
 		sudo apt-get install macs2
 	-python (<=v2.7), required for all
 	-R (v3.0.2), required for CallPeaks and CallPeaks_norep
-		All .r and .R scripts required are present in the folder Rscripts
+		All .r and .R scripts required are present in the folder Scripts
 
-All of these tools must be accessible in your environment variable.
+For fastqc, bowtie2, samtools, picard-tools, macs2, python and R, these tools must be accessible in your $PATH environment variable.
 
 ################
 # Installation #
@@ -98,11 +108,12 @@ from shell terminal launch :
 this will print to screen the usage message :
 
 		usage ChIPpipe [-h] [--version]
-		{ChIPalign, CallPeaks, CallPeaks_norep}
+		{trimQual, ChIPalign, CallPeaks, CallPeaks_norep}
 
 		ChIPpipe, pipeline for alignment and peak calling of ChIP-Seq datas
 
 		POSITIONAL COMMANDS:
+			trimQual	Quality check and trimming of ChIP-seq fastq
 			ChIPalign	Alignment and filtration of ChIP-Seq fastq
 			CallPeaks	PeakCalling based on IDR analysis protocol proposed by ENCODE (requiring biological replicates)
 			CallPeaks_norep	PeakCalling when no biological replicates are available
@@ -121,6 +132,25 @@ Check software version
 ################
 # Subprogramms #
 ################
+
+trimQual:
+	
+	Call:
+
+		ChIPpipe trimQual [-f FILE.fastq(.gz)> | -1 FILE_R1.fastq(.gz)> -2 FILE_R2.fastq(.gz)>] --lib INT [options]
+
+	Required arguments:
+
+		-f FILE	: full path and name of single end fastq file to analze (could be .fastq or .fastq.gz)
+		or
+		-1 FILE_R1 -2 FILE_R2	: full path and name of fastq file R1 (-1) and R2 (-2) for paired end data (could be .fastq or .fastq.gz)
+		--lib INT	: select the adaptator library following used sequencer (0: Illumina Genome Analyzer IIx ; 1: Hi Seq 2000)
+
+	Optionnal arguments:
+
+		-o DIRECTORY	: output directory in which put all output files (default create trimQual_out in current directory)
+		--adapt <PE|SE>	: Sequencing library used for adaptators (default depend on -f (SE) or -1 (PE) options)
+		-h, --help 	: print this usage message
 
 ChIPalign:
 	
@@ -196,6 +226,12 @@ CallPeaks_norep:
 # Output #
 ##########
 
+trimQual :
+	
+	This tool will produce a folder (depend on -o option) which will contains two subfolders:
+
+		-> One fasqtc_report folder which contains all fastQC quality check outputs
+		-> One fastq_trim folder which contains all fastq files trimmed  
 
 ChIPalign:
 
