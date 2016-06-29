@@ -53,7 +53,7 @@ To run this pipeline, these tools are required :
 	-bowtie2 (v2.1.0), required for ChIPalign
 		from shell terminal:
 		sudo apt-get install bowtie2
-	-samtools (v1.3.1), required for all
+	-samtools (v1.3.1), required for ChIPalign, CallPeaks and CallPeaks_norep
 		from shell terminal:
 		sudo apt-get install samtools
 	-picard tools (v1.95), required for ChIPalign
