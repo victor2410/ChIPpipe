@@ -224,7 +224,7 @@ CallPeaks_norep:
 
 		-o OUTPUTDIRECTORY	: full path and name of directory in wich writes all output files (default create a new repositorie in the current directory)
 		--thresh STR	: pvalue threshold for peak calling (ex : 1e-7 ; default = 1e-3)
-		--nomodel	: using estimated fragment length by phantomPeakQualtools for peakCalling than macs2 prediction model
+		--spp-qual	: Cross-correlation analysis performed by spp before calling peaks (default: OFF)
 		--name NAME : prefix to give to output files (default is CallPeaks_macs)
 		-h, --help 	: usage
 
