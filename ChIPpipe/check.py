@@ -60,6 +60,23 @@ def checkBam(bamfile): # Check if a given file is in fastq format
 		sys.exit(1)
 	return
 
+def checkBed(bedfile): # Check if a given file is in fastq format
+	checkFile(bedfile) # Check if the file exist
+	fileext = os.path.splitext(bedfile) 
+	if fileext[1] == '.bed': # if the extension is '.bam', the file is in the right format, quit this function and continue 
+		return
+	else: # The extension is different whatever it is, print an error message and then exit the programm
+		print "Error the specified file '"+bedfile+"' is not in fastq format"
+		sys.exit(1)
+	return
+
+def checkGz(filein): # Check if a given file is in fastq format
+	fileext = os.path.splitext(filein) 
+	if fileext[1] == '.gz': # if the extension is '.bam', the file is in the right format, quit this function and continue 
+		return True
+	else: # The extension is different whatever it is, print an error message and then exit the programm
+		return False
+
 def checkGenome(genomefile): # Check the existence of fasta file genome
 	genome = genomefile + ".fa" 
 	if os.path.isfile(genome): # If the file exist with '.fa' extension, quit the function and continue
@@ -74,7 +91,7 @@ def checkGenome(genomefile): # Check the existence of fasta file genome
 
 def checkLib(lib): # check if the integer specified is 0 or 1
 	if int(lib) != 0 and int(lib) != 1: # if integer not expected, print an error message and then exit the programm
-		print "Error, library must be 0 for 1 for sequenceur used, please check with -h option"
+		print "Error, library must be 0 for 1 or sequencer used, please check with -h option"
 		sys.exit(1)
 	return
 
@@ -106,10 +123,10 @@ def checkRequiredCa(seq, fastqfile2, genome): # Check if all required option are
 
 def checkRequiredCp(rep1, rep2, ctrl1): # Check if all required option are specified
 	if rep1 == '': # means that no options '-1' have been specified, print an error message and exit the programm
- 		print "Error the options -1 have not been used, these option are required to run this programm"
+ 		print "Error the options -1 have not been used, this option are required to run this programm"
 		sys.exit(1)
 	if rep2 == '': # means that no options '-2' have been specified, print an error message and exit the programm
-		print "Error the options -2 have not been used, these option are required to run this programm"
+		print "Error the options -2 have not been used, this option are required to run this programm"
 		sys.exit(1)
 	if ctrl1 == '': # means that no control file is given , print an error message and exit the programm
 		print "Error, at least one control file (input) is expected to perform this analysis, please re-run with the option --c1"
@@ -119,5 +136,14 @@ def checkRequiredCp(rep1, rep2, ctrl1): # Check if all required option are speci
 def checkRequiredCpnr(file_in, ctrl): # Check if all required option are specified
 	if file_in == '' or ctrl == '': # means that no options '-1' have been specified, print an error message and exit the programm
  		print "Error the options -f or -c or both have not been used, these option are required to run this programm"
+		sys.exit(1)
+	return
+
+def checkRequiredAp(peakfile, annofile, peakcaller): # Check if all required option are specified
+	if peakfile == '': # means that no options '-f' have been specified, print an error message and exit the programm
+ 		print "Error the options -f have not been used, this option are required to run this programm"
+		sys.exit(1)
+	if annofile == '': # means that no options '-a' have been specified, print an error message and exit the programm
+		print "Error the options -a have not been used, this option are required to run this programm"
 		sys.exit(1)
 	return

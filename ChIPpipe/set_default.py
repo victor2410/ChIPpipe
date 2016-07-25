@@ -78,6 +78,16 @@ def initParamCpnr(): # Initialize all parameters to default values
 	prefix = str()
 	return outputdir, selectodir, bamfile, ctrlfile, thresh, model, prefix
 
+def initParamAp():
+	outputdir = os.getcwd()+'/AnnoPeaks_out'
+	selectodir = 'false'
+	peakfile = str()
+	annofile = str()
+	prefix = str()
+	peakcaller = str()
+	graph = 'OFF'
+	return outputdir, selectodir, peakfile, annofile, peakcaller, prefix, graph 
+
 def getPrefix(file_in): # Get the prefix name of a specified file when no prefix is given
 	m = re.search('[^.]*',file_in)
 	return os.path.basename(m.group(0))

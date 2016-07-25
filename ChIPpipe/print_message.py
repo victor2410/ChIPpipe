@@ -80,9 +80,21 @@ def usageCpnr():
 	print "\t--nomodel	: using estimated fragment length by phantomPeakQualtools for peakCalling than macs2 prediction model"
 	print "\t--name NAME : prefix to give to output files (default is CallPeaks_macs)"
 
+def usageAp():
+	print "AnnoPeaks, Peaks annotation based on ChromHMM results to annotate promoter and enhancer Transcription factor binding site"
+	print "Usage : ChIPpipe AnnoPeaks -f <path/peakfile> -a <path/ChrommHMMannotationFile.bed> --peakCaller <spp|macs2> [options]"
+	print "\t-h, --help 	: print this usage message"
+	print "REQUIRED ARGUMENTS"
+	print "\t-f FILE	: full path and name of peak file "
+	print "\t-a FILE	: full path and name of ChromHMM annotation file (bed file)"
+	print "OPTIONNAL ARGUMENTS"
+	print "\t-o OUTPUTDIRECTORY	: full path and name of directory in wich writes all output files (default create a new repositorie in the current directory)"
+	print "\t--plot	: for plotting annotation results (default is off)"
+	print "\t--name NAME : prefix to give to output files (default is CallPeaks_macs)"
+
 def usage():
 	print "usage ChIPpipe [-h] [--version]"
-	print "\t{trimQual, ChIPalign, CallPeaks, CallPeaks_norep}"
+	print "\t{trimQual, ChIPalign, CallPeaks, CallPeaks_norep, AnnoPeaks}"
 	print ""
 	print "ChIPpipe, pipeline for alignment and peak calling of ChIP-Seq datas"
 	print ""
@@ -91,6 +103,7 @@ def usage():
 	print "\tChIPalign\tAlignment and filtration of ChIP-Seq fastq"
 	print "\tCallPeaks\tPeakCalling based on IDR analysis protocol proposed by ENCODE (requiring biological replicates)"
 	print "\tCallPeaks_norep\tPeakCalling when no biological replicates are available"
+	print "\tAnnoPeaks\tAnnotate ChIP-seq peaks with ChromHMM annotation file"
 	print ""
 	print "OPTIONAL ARGUMENTS"
 	print "\t-h, --help 	: print this usage message"
@@ -127,6 +140,14 @@ def welcomeCpnr():
 	print "\t###################"
 	print ""
 	print "\tCallPeaks_norep, PeakCalling for sample without biological replicates related on MACS2"
+
+def welcomeAp():
+	print ""
+	print "\t#############"
+	print "\t# AnnoPeaks #"
+	print "\t#############"
+	print ""
+	print "\tAnnoPeaks, Peaks annotation based on ChromHMM results to annotate promoter and enhancer Transcription factor binding site"
 
 def parametersTq(outputdir, fastqfile, fastqfile1, fastqfile2, adaptaters, lib, seq1, seq2):
 	print ""
@@ -227,7 +248,7 @@ def parametersCp(outputdir, selectodir, rep1, rep2, ctrl1, ctrl2, ctrlsup, idr, 
 	print "Creating final set of peaks:"+finalsets
 	print "Plotting IDR results :"+plot
 
-def parametersCpnr(outputdir, selectodir, bamfile, ctrlfile, thresh, model, prefix):
+def parametersCpnr(outputdir, bamfile, ctrlfile, thresh, model, prefix):
 	print ""
 	print "\t################################"
 	print "\t# PARAMETERS USED FOR THIS RUN #"
@@ -242,6 +263,17 @@ def parametersCpnr(outputdir, selectodir, bamfile, ctrlfile, thresh, model, pref
 	else:
 		print "let macs2 build model itself for estimating peakCalling parameters"
 	print "p-value threshold fo peakCalling:"+thresh
+
+def parametersAp(outputdir, peakfile, annofile, peakcaller, prefix):
+	print ""
+	print "\t################################"
+	print "\t# PARAMETERS USED FOR THIS RUN #"
+	print "\t################################"
+	print ""
+	print "peak file :"+peakfile
+	print "chromHMM annotation file :"+annofile
+	print "output directory :"+outputdir
+	print "prefix name to give to output files :"+prefix
 
 def running():
 	print ""
@@ -266,3 +298,8 @@ def goodbyeCp():
 	print "\t#####################"
 	print "\t# ANALYSIS ACHIEVED #"
 	print "\t#####################"
+
+def summaryAp(nbpeak, nbprom, nbenh):
+	print "Number of total peaks :"+str(nbpeak)
+	print "Number of peaks that fall into promoter regions :"+str(nbprom)
+	print "Number of peaks that fall into enhancer regions :"+str(nbenh)

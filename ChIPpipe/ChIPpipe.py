@@ -13,6 +13,7 @@
    	- ChIPalign
    	- CallPeaks
    	- CallPeaks_norep
+   	- AnnoPeaks
 """
 
 # Packages required for this programm
@@ -24,6 +25,7 @@ from CallPeaks_norep import mainCpnr
 from trimQual import mainTq
 from print_message import usage
 from get_opt import readOpt
+from AnnoPeaks import mainAp
 
 
 __all__ = ['main']
@@ -41,6 +43,8 @@ def main():
 		mainCpnr(sys.argv[1:])
 	elif sys.argv[1] == 'trimQual': # Call to trimQual tool
 		mainTq(sys.argv[1:])
+	elif sys.argv[1] == 'AnnoPeaks':
+		mainAp(sys.argv[1:])
 	else: # Wrong parameter specified, print usage message and then exit
 		print "Wrong parameter specified, please check your options"
 		usage()

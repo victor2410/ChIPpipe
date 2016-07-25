@@ -16,8 +16,8 @@
 import os
 import sys
 import getopt
-from check import checkFastq, checkBam, checkPath, checkGenome, checkFile, checkLib
-from print_message import usageCa, usageCp, usageCpnr, usage, usageTq
+from check import checkFastq, checkBam, checkPath, checkGenome, checkFile, checkLib, checkBed
+from print_message import usageCa, usageCp, usageCpnr, usage, usageTq, usageAp
 
 def readOptTq(argv, outputdir, selectodir, fastqfile1, fastqfile2, fastqfile, seq1, seq2, lib):
 	try:                                
@@ -28,7 +28,7 @@ def readOptTq(argv, outputdir, selectodir, fastqfile1, fastqfile2, fastqfile, se
 	for opt, arg in opts:
 		if opt in ("-h", "--help"): # Print usage message
 			usageTq()
-			sys.exit()
+			sys.exit(0)
 		elif opt == '-f': # for SE fastq file
 			checkFastq(arg)
 			fastqfile = arg
@@ -66,7 +66,7 @@ def readOptCa(argv, outputdir, selectodir, filterqual, unmapped, filtercoord, in
 	for opt, arg in opts:
 		if opt in ("-h", "--help"): # Print usage message
 			usageCa()
-			sys.exit()
+			sys.exit(0)
 		elif opt == '-f': # Means that just one SE fastq file is given
 			checkFastq(arg)
 			fastqfile = arg
@@ -117,7 +117,7 @@ def readOptCp(argv, outputdir, selectodir, rep1, rep2, ctrl1, ctrl2, ctrlsup, id
 	for opt, arg in opts:
 		if opt in ("-h", "--help"): # Print usage message
 			usageCp()
-			sys.exit()
+			sys.exit(0)
 		elif opt == '-1': # For replicate 1 file
 			checkBam(arg)
 			rep1 = arg
@@ -157,7 +157,7 @@ def readOptCpnr(argv, outputdir, selectodir, bamfile, ctrlfile, thresh, model, p
 	for opt, arg in opts:
 		if opt in ("-h", "--help"): # Print usage message
 			usageCpnr()
-			sys.exit()
+			sys.exit(0)
 		elif opt == '-f': # For replicate 1 file
 			checkBam(arg)
 			bamfile = arg
@@ -178,6 +178,34 @@ def readOptCpnr(argv, outputdir, selectodir, bamfile, ctrlfile, thresh, model, p
 			prefix = arg
 	return  outputdir, selectodir, bamfile, ctrlfile, thresh, model, prefix
 
+def readOptAp(argv,  outputdir, selectodir, peakfile, annofile, peakcaller, prefix, graph):
+	try:                                
+	    opts, args = getopt.getopt(argv, "hf:a:o:", ["help", "plot", "name="]) # List of all short and long options possible
+	except getopt.GetoptError:
+	    usageAp()
+	    sys.exit(2)
+	for opt, arg in opts:
+		if opt in ("-h", "--help"): # Print usage message
+			usageAp()
+			sys.exit(0)
+		elif opt == '-f': # For replicate 1 file
+			checkFile(arg)
+			peakfile = arg
+		elif opt == '-a': # For replicate 2 file
+			checkBed(arg)
+			annofile = arg
+		elif opt == '-o': # Output directory is specified
+			if not checkPath(arg):
+				print "Error, the specified path '"+arg+"' does not exists"
+				sys.exit(1)
+			outputdir = arg
+			selectodir = 'true'
+		elif opt == '--name': # Prefix to give to output file
+			prefix = arg
+		elif opt == '--plot':
+			graph = 'ON'
+	return   outputdir, selectodir, peakfile, annofile, peakcaller, prefix, graph
+
 def readOpt(argv):
 	__version__ = "0.0.1"
 	try:                                
@@ -188,7 +216,7 @@ def readOpt(argv):
 	for opt, arg in opts:
 		if opt in ("-h", "--help"): # Print usage message
 			usage()
-			sys.exit()
+			sys.exit(0)
 		elif opt == '--version': # Print software version
 			print "ChIPpipe."+__version__
 			sys.exit(0)
