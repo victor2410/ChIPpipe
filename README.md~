@@ -81,13 +81,13 @@ For fastqc, bowtie2, samtools, picard-tools, macs2, python and R, these tools mu
 # Installation #
 ################
 
-After installed all the required tools, go to ChIPalign directory and install it with python.
+After installed all the required tools, go to ChIPpipe directory and install it with python.
 
 	from shell terminal:
 		cd /Path/to/ChIPpipe
 		sudo python setup.py install
 
-This will add to your environment variable the command ChIPalign.
+This will add to your environment variable the command ChIPpipe.
 You also need to indicate path to Rscripts in your .bashrc
 
 	from shell terminal:
@@ -225,7 +225,23 @@ CallPeaks_norep:
 		--name NAME : prefix to give to output files (default is CallPeaks_macs)
 		-h, --help 	: usage
 
+AnnoPeaks:
+	
+	Call:
 
+		ChIPpipe AnnoPeaks -f <path/peakfile> -a <path/ChrommHMMannotationFile.bed> --peakCaller <spp|macs2> [options]
+
+	Required Arguments:
+
+		-f FILE	: full path and name of peak file 
+		-a FILE	: full path and name of ChromHMM annotation file (bed file)
+
+	Optionnal Arguments:
+
+		-o OUTPUTDIRECTORY	: full path and name of directory in wich writes all output files (default create a new repositorie in the current directory)
+		--plot	: for plotting annotation results (default is off)
+		--name NAME : prefix to give to output files (default is AnnoPeaks)
+		-h, --help 	: usage
 	
 ##########
 # Output #

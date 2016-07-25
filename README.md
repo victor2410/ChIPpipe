@@ -113,17 +113,19 @@ from shell terminal launch :
 this will print to screen the usage message :
 
 		usage ChIPpipe [-h] [--version]
-		{trimQual, ChIPalign, CallPeaks, CallPeaks_norep}
+		
+		{trimQual, ChIPalign, CallPeaks, CallPeaks_norep, AnnoPeaks}
 
 		ChIPpipe, pipeline for alignment and peak calling of ChIP-Seq datas
 
 		POSITIONAL COMMANDS:
-			trimQual	Quality check and trimming of ChIP-seq fastq
-			ChIPalign	Alignment and filtration of ChIP-Seq fastq
-			CallPeaks	PeakCalling based on IDR analysis protocol proposed by ENCODE (requiring biological replicates)
-			CallPeaks_norep	PeakCalling when no biological replicates are available
+		trimQual	Quality check and trimming of ChIP-seq fastq
+		ChIPalign	Alignment and filtration of ChIP-Seq fastq
+		CallPeaks	PeakCalling based on IDR analysis protocol proposed by ENCODE (requiring biological replicates)
+		CallPeaks_norep	PeakCalling when no biological replicates are available
+		AnnoPeaks	Annotate ChIP-seq peaks with ChromHMM annotation file
 
-		OPTIONAL ARGUMENTS
+		OPTIONAL ARGUMENTS:
 			-h, --help 	: usage.
 			--version : version of ChIPpipe
 
@@ -225,7 +227,23 @@ CallPeaks_norep:
 		--name NAME : prefix to give to output files (default is CallPeaks_macs)
 		-h, --help 	: usage
 
+AnnoPeaks:
+	
+	Call:
 
+		ChIPpipe AnnoPeaks -f <path/peakfile> -a <path/ChrommHMMannotationFile.bed> --peakCaller <spp|macs2> [options]
+
+	Required Arguments:
+
+		-f FILE	: full path and name of peak file 
+		-a FILE	: full path and name of ChromHMM annotation file (bed file)
+
+	Optionnal Arguments:
+
+		-o OUTPUTDIRECTORY	: full path and name of directory in wich writes all output files (default create a new repositorie in the current directory)
+		--plot	: for plotting annotation results (default is off)
+		--name NAME : prefix to give to output files (default is AnnoPeaks)
+		-h, --help 	: usage
 	
 ##########
 # Output #
