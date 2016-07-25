@@ -1,4 +1,4 @@
-# ChIPpipe, python package for ChIP-seq files analyze
+# ChIPpipe, python package for ChIP-seq datas analyze
 
 ##########
 # Author #
@@ -38,6 +38,7 @@ This pipeline is created to perform full analysis of ChIP-seq datas. This pipeli
 	-> ChIPalign : Alignment and filtration of ChIP-seq fastq files
 	-> CallPeaks : Peak Calling based on ENCODE protocol with IDR analysis (requiring replicates)
 	-> CallPeaks_norep : Peak Calling related on macs2 and used when no replicates are available
+	-> AnnoPeaks : Annotate ChIP-seq peaks with ChromHMM annotation file
 
 This pipeline is implemented in python.
 
@@ -113,17 +114,19 @@ from shell terminal launch :
 this will print to screen the usage message :
 
 		usage ChIPpipe [-h] [--version]
-		{trimQual, ChIPalign, CallPeaks, CallPeaks_norep}
+		
+		{trimQual, ChIPalign, CallPeaks, CallPeaks_norep, AnnoPeaks}
 
 		ChIPpipe, pipeline for alignment and peak calling of ChIP-Seq datas
 
 		POSITIONAL COMMANDS:
-			trimQual	Quality check and trimming of ChIP-seq fastq
-			ChIPalign	Alignment and filtration of ChIP-Seq fastq
-			CallPeaks	PeakCalling based on IDR analysis protocol proposed by ENCODE (requiring biological replicates)
-			CallPeaks_norep	PeakCalling when no biological replicates are available
+		trimQual	Quality check and trimming of ChIP-seq fastq
+		ChIPalign	Alignment and filtration of ChIP-Seq fastq
+		CallPeaks	PeakCalling based on IDR analysis protocol proposed by ENCODE (requiring biological replicates)
+		CallPeaks_norep	PeakCalling when no biological replicates are available
+		AnnoPeaks	Annotate ChIP-seq peaks with ChromHMM annotation file
 
-		OPTIONAL ARGUMENTS
+		OPTIONAL ARGUMENTS:
 			-h, --help 	: usage.
 			--version : version of ChIPpipe
 

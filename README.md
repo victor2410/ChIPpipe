@@ -1,4 +1,4 @@
-# ChIPpipe, python package for ChIP-seq files analyze
+# ChIPpipe, python package for ChIP-seq datas analyze
 
 ##########
 # Author #
@@ -38,6 +38,7 @@ This pipeline is created to perform full analysis of ChIP-seq datas. This pipeli
 	-> ChIPalign : Alignment and filtration of ChIP-seq fastq files
 	-> CallPeaks : Peak Calling based on ENCODE protocol with IDR analysis (requiring replicates)
 	-> CallPeaks_norep : Peak Calling related on macs2 and used when no replicates are available
+	-> AnnoPeaks : Annotate ChIP-seq peaks with ChromHMM annotation file
 
 This pipeline is implemented in python.
 
@@ -262,7 +263,7 @@ ChIPalign:
 
 CallPeaks:
 
-	This tools will create four differents folders:
+	This tool will create four differents folders:
 
 		-> One tagAlign folder which contains all file tranformed from the initial bam file (replicates, pseudo-replicates, pool, control files...) in tagAlign format
 		-> One PeakCalling folder which contains all file issue from spp PeakCalling for each tagAlign file (including cross-correlation graphs)
@@ -271,10 +272,14 @@ CallPeaks:
 
 CallPeaks_norep:
 
-	This tools will generate two folders:
+	This tool will generate two folders:
 
 		-> One tagAlign folder which contains all file tranformed from the initial bam file (treatment and Input file...) in tagAlign format
 		-> One PeakCalling folder which contains all file issue from macs2 PeakCalling for each tagAlign file (including cross-correlation graphs)
 		
-
+AnnoPeaks:
+	this tool will generate four differents bed files:
+	
+		-> One for all promoter and one for all enhancer region
+		-> One for ChIP-seq peaks that fall into promoter region and one for peaks that fall into enhancer region
 
