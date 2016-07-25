@@ -1,4 +1,4 @@
-# ChIPpipe, python package for ChIP-seq datas analyze
+# ChIPpipe, python package for ChIP-seq datas analysis
 
 ##########
 # Author #

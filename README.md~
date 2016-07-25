@@ -278,7 +278,8 @@ CallPeaks_norep:
 		-> One PeakCalling folder which contains all file issue from macs2 PeakCalling for each tagAlign file (including cross-correlation graphs)
 		
 AnnoPeaks:
-	this tool will generate four differents bed files:
+	
+	This tool will generate four differents bed files:
 	
 		-> One for all promoter and one for all enhancer region
 		-> One for ChIP-seq peaks that fall into promoter region and one for peaks that fall into enhancer region
