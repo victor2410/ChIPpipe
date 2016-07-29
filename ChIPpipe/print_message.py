@@ -76,6 +76,8 @@ def usageCpnr():
 	print "\t-c FILE	: full path and name of Input alignment file to use (bam format)"
 	print "OPTIONNAL ARGUMENTS"
 	print "\t-o OUTPUTDIRECTORY	: full path and name of directory in wich writes all output files (default create a new repositorie in the current directory)"
+	print "\t-p 	: call peaks based on pvalue threshold (default: ON)"
+	print "\t-q 	: call peaks based on qvalue threshold (default: OFF)"
 	print "\t--thresh STR	: pvalue threshold for peak calling (ex : 1e-7 ; default = 1e-3)"
 	print "\t--spp-qual	: Cross-correlation analysis performed by spp before calling peaks (default: OFF)"
 	print "\t--name NAME : prefix to give to output files (default is CallPeaks_macs)"
@@ -92,11 +94,36 @@ def usageAp():
 	print "\t--plot	: for plotting annotation results (default is off)"
 	print "\t--name NAME : prefix to give to output files (default is AnnoPeaks)"
 
+def usageMd():
+	print "MotifDiscover, Motif discovery tool related on MEME suite"
+	print "Usage : ChIPpipe MotifDiscover -f <path/regionFile.bed> -g <path/genomeFile[.fa|.fasta]>[options]"
+	print "\t-h, --help 	: print this usage message"
+	print "REQUIRED ARGUMENTS"
+	print "\t-f FILE	: full path and name of region bed file "
+	print "\t-g FILE	: full path and name of genome fasta file (could be .fa or .fasta extension)"
+	print "OPTIONNAL ARGUMENTS"
+	print "\t-o OUTPUTDIRECTORY	: full path and name of directory in wich writes all output files (default create a new repositorie in the current directory)"
+	print "\t--name NAME : prefix to give to output files (default is MotifDiscover)"
+	print "\t--db STRING : database to use to perform central enrichment analysis and motif scanning (default is OFF) must be JASPAR, HUMAN or UNIPROBE"
+
+def usageSm():
+	print "ScanMotif, Motif enrichment analysis tool related on HOMER"
+	print "Usage : ChIPpipe MotifDiscover -f <path/regionFile.bed> -g <path/genomeFile[.fa|.fasta]> -m <path/motifFile.motif>[options]"
+	print "\t-h, --help 	: print this usage message"
+	print "REQUIRED ARGUMENTS"
+	print "\t-f FILE	: full path and name of region bed file "
+	print "\t-g FILE	: full path and name of genome fasta file (could be .fa or .fasta extension)"
+	print "\t-m FILE 	: full path and name of motif file (with .motif extension)"
+	print "OPTIONNAL ARGUMENTS"
+	print "\t-o OUTPUTDIRECTORY	: full path and name of directory in wich writes all output files (default create a new repositorie in the current directory)"
+	print "\t--name NAME : prefix to give to output files (default is MotifDiscover)"
+	print "\t--excl STRING : genomic region to exclude from background file (EXON: refseq coding exon; BLACKLIST: consensus hg19 blacklist region; BOTH) (default include those regions)"
+
 def usage():
 	print "usage ChIPpipe [-h] [--version]"
-	print "\t{trimQual, ChIPalign, CallPeaks, CallPeaks_norep, AnnoPeaks}"
+	print "\t{trimQual, ChIPalign, CallPeaks, CallPeaks_norep, AnnoPeaks, MotifDiscover, ScanMotif}"
 	print ""
-	print "ChIPpipe, pipeline for alignment and peak calling of ChIP-Seq datas"
+	print "ChIPpipe, pipeline for alignment, peak calling, annotation and motif analysis of ChIP-Seq datas"
 	print ""
 	print "POSITIONAL COMMANDS:"
 	print "\ttrimQual\tQuality check and trimming of ChIP-seq fastq"
@@ -104,6 +131,8 @@ def usage():
 	print "\tCallPeaks\tPeakCalling based on IDR analysis protocol proposed by ENCODE (requiring biological replicates)"
 	print "\tCallPeaks_norep\tPeakCalling when no biological replicates are available"
 	print "\tAnnoPeaks\tAnnotate ChIP-seq peaks with ChromHMM annotation file"
+	print "\tMotifDiscover\tMotif discovery related on MEME suite"
+	print "\tScanMotif\tMotif enrichment analysis related on HOMER"
 	print ""
 	print "OPTIONAL ARGUMENTS"
 	print "\t-h, --help 	: print this usage message"
@@ -149,6 +178,23 @@ def welcomeAp():
 	print ""
 	print "\tAnnoPeaks, Peaks annotation based on ChromHMM results to annotate promoter and enhancer Transcription factor binding site"
 
+def welcomeMd():
+	print ""
+	print "\t#################"
+	print "\t# MotifDiscover #"
+	print "\t#################"
+	print ""
+	print "\tMotifDiscover, Motif discovery tool related on MEME suite"
+
+def welcomeSm():
+	print ""
+	print "\t#############"
+	print "\t# ScanMotif #"
+	print "\t#############"
+	print ""
+	print "\tScanMotif, Motif enrichment analysis tool related on HOMER"
+
+
 def parametersTq(outputdir, fastqfile, fastqfile1, fastqfile2, adaptaters, lib, seq1, seq2):
 	print ""
 	print "\t################################"
@@ -156,23 +202,23 @@ def parametersTq(outputdir, fastqfile, fastqfile1, fastqfile2, adaptaters, lib, 
 	print "\t################################"
 	print ""
 	if seq1 == 'SE':
-		print "fastq file: "+fastqfile
-		print "datas are Single End"
+		print "\tfastq file: "+fastqfile
+		print "\tdatas are Single End"
 	else:
-		print "fastq file R1: "+fastqfile1
-		print "fastq file R2: "+fastqfile2
-		print "datas are paired end"
-	print "output directory: "+outputdir
+		print "\tfastq file R1: "+fastqfile1
+		print "\tfastq file R2: "+fastqfile2
+		print "\tdatas are paired end"
+	print "\toutput directory: "+outputdir
 	if int(lib) == 0:
-		print "sequencer used to get reads: Illumina Genome Analyzer IIx"
+		print "\tsequencer used to get reads: Illumina Genome Analyzer IIx"
 	else:
-		print "sequencer used to get reads: Hi Seq 2000"
+		print "\tsequencer used to get reads: Hi Seq 2000"
 	if seq2 != '':
 		if seq2 == 'SE':
-			print "searching for single end adaptator"
+			print "\tsearching for single end adaptator"
 		else:
-			print "searching for paired end adaptator"
-	print "trimmomatic adaptator library: "+adaptaters
+			print "\tsearching for paired end adaptator"
+	print "\ttrimmomatic adaptator library: "+adaptaters
 
 def parametersSe(fastqfile, genome, outputdir, filterqual, minqual, unmapped, filtercoord, coordinateFile, indexGenome, rmvdup, sorting, indexBam, prefix):
 	print ""
@@ -180,52 +226,52 @@ def parametersSe(fastqfile, genome, outputdir, filterqual, minqual, unmapped, fi
 	print "\t# PARAMETERS USED FOR THIS RUN #"
 	print "\t################################"
 	print ""
-	print "fastq file to align: "+fastqfile
-	print "fasta file for reference genome: "+genome+".fa"
-	print "output directory: "+outputdir
-	print "prefix name to give to output files: "+prefix
-	print "genome indexing: "+indexGenome
+	print "\tfastq file to align: "+fastqfile
+	print "\tfasta file for reference genome: "+genome+".fa"
+	print "\toutput directory: "+outputdir
+	print "\tprefix name to give to output files: "+prefix
+	print "\tgenome indexing: "+indexGenome
 	if filterqual == 'OFF':
-		print "filtering with minimum mapping quality: "+filterqual
+		print "\tfiltering with minimum mapping quality: "+filterqual
 	else:
-		print "filtering with minimum mapping quality: "+filterqual
-		print "mapping quality threshold: "+minqual
-	print "filtering unmapped reads: "+unmapped
+		print "\tfiltering with minimum mapping quality: "+filterqual
+		print "\tmapping quality threshold: "+minqual
+	print "\tfiltering unmapped reads: "+unmapped
 	if filtercoord == 'OFF':
-		print "filtering reads inside coordinates files: "+filtercoord
+		print "\tfiltering reads inside coordinates files: "+filtercoord
 	else:
-		print "filtering reads inside coordinates files: "+filtercoord
-		print "coordinates files to filter out: "+coordinateFile
-	print "remove PCR duplicates and non uniquely mappable reads: "+rmvdup
-	print "sorting final bam file: "+sorting
-	print "indexing final bam file: "+indexBam
+		print "\tfiltering reads inside coordinates files: "+filtercoord
+		print "\tcoordinates files to filter out: "+coordinateFile
+	print "\tremove PCR duplicates and non uniquely mappable reads: "+rmvdup
+	print "\tsorting final bam file: "+sorting
+	print "\tindexing final bam file: "+indexBam
 
 def parametersPe(fastqfile1, fastqfile2, genome, outputdir, filterqual, minqual, unmapped, filtercoord, coordinateFile, indexGenome, rmvdup, sorting, indexBam, prefix):
 	print ""
-	print "################################"
-	print "# PARAMETERS USED FOR THIS RUN #"
-	print "################################"
+	print "\t################################"
+	print "\t# PARAMETERS USED FOR THIS RUN #"
+	print "\t################################"
 	print ""
-	print "fastq file R1 to align: "+fastqfile1
-	print "fastq file R2 to align: "+fastqfile2
-	print "fasta file for reference genome: "+genome+".fa"
-	print "output directory: "+outputdir
-	print "prefix name to give to output files: "+prefix
-	print "genome indexing: "+indexGenome
+	print "\tfastq file R1 to align: "+fastqfile1
+	print "\tfastq file R2 to align: "+fastqfile2
+	print "\tfasta file for reference genome: "+genome+".fa"
+	print "\toutput directory: "+outputdir
+	print "\tprefix name to give to output files: "+prefix
+	print "\tgenome indexing: "+indexGenome
 	if filterqual == 'OFF':
-		print "filtering with minimum mapping quality: "+filterqual
+		print "\tfiltering with minimum mapping quality: "+filterqual
 	else:
-		print "filtering with minimum mapping quality: "+filterqual
-		print "mapping quality threshold: "+minqual
-	print "filtering unmapped reads: "+unmapped
+		print "\tfiltering with minimum mapping quality: "+filterqual
+		print "\tmapping quality threshold: "+minqual
+	print "\tfiltering unmapped reads: "+unmapped
 	if filtercoord == 'OFF':
-		print "filtering reads inside coordinates files: "+filtercoord
+		print "\tfiltering reads inside coordinates files: "+filtercoord
 	else:
-		print "filtering reads inside coordinates files: "+filtercoord
-		print "coordinates files to filter out: "+coordinateFile
-	print "remove PCR duplicates and non uniquely mappable reads: "+rmvdup
-	print "sorting final bam file: "+sorting
-	print "indexing final bam file: "+indexBam
+		print "\tfiltering reads inside coordinates files: "+filtercoord
+		print "\tcoordinates files to filter out: "+coordinateFile
+	print "\tremove PCR duplicates and non uniquely mappable reads: "+rmvdup
+	print "\tsorting final bam file: "+sorting
+	print "\tindexing final bam file: "+indexBam
 
 def parametersCp(outputdir, selectodir, rep1, rep2, ctrl1, ctrl2, ctrlsup, idr, idrthresh, finalsets, plot, prefix):
 	print ""
@@ -233,33 +279,38 @@ def parametersCp(outputdir, selectodir, rep1, rep2, ctrl1, ctrl2, ctrlsup, idr, 
 	print "\t# PARAMETERS USED FOR THIS RUN #"
 	print "\t################################"
 	print ""
-	print "bam file Replicate 1: "+rep1
-	print "bam file Replicate 2: "+rep2
-	print "bam file Control: "+ctrl1
+	print "\tbam file Replicate 1: "+rep1
+	print "\tbam file Replicate 2: "+rep2
+	print "\tbam file Control: "+ctrl1
 	if ctrlsup == 'true':
-		print "bam file Control supp: "+ctrl2
-	print "output directory: "+outputdir
-	print "prefix name to give to output files: "+prefix
+		print "\tbam file Control supp: "+ctrl2
+	print "\toutput directory: "+outputdir
+	print "\tprefix name to give to output files: "+prefix
 	if idr == 'OFF':
-		print "Run IDR analysis: "+idr
+		print "\tRun IDR analysis: "+idr
 	else:
-		print "Run IDR analysis: "+idr
-		print "IDR threshold: "+idrthresh
-	print "Creating final set of peaks: "+finalsets
-	print "Plotting IDR results: "+plot
+		print "\tRun IDR analysis: "+idr
+		print "\tIDR threshold: "+idrthresh
+	print "\tCreating final set of peaks: "+finalsets
+	print "\tPlotting IDR results: "+plot
 
-def parametersCpnr(outputdir, bamfile, ctrlfile, thresh, qc, prefix):
+def parametersCpnr(outputdir, bamfile, ctrlfile, thresh, pvalue, qvalue, qc, prefix):
 	print ""
 	print "\t################################"
 	print "\t# PARAMETERS USED FOR THIS RUN #"
 	print "\t################################"
 	print ""
-	print "bam file: "+bamfile
-	print "bam file Control: "+ctrlfile
-	print "output directory: "+outputdir
-	print "prefix name to give to output files: "+prefix
-	print "Cross-correlation analysis before calling peaks (performed by spp): "+qc
-	print "p-value threshold fo peakCalling: "+thresh
+	print "\tbam file: "+bamfile
+	print "\tbam file Control: "+ctrlfile
+	print "\toutput directory: "+outputdir
+	print "\tprefix name to give to output files: "+prefix
+	print "\tCross-correlation analysis before calling peaks (performed by spp): "+qc
+	if pvalue == 'ON':
+		print "\tpeakcalling based on p-value"
+		print "\tp-value threshold fo peakCalling: "+thresh
+	else:
+		print "\tpeakcalling based on q-value"
+		print "\tq-value threshold fo peakCalling: "+thresh
 
 def parametersAp(outputdir, peakfile, annofile, peakcaller, prefix):
 	print ""
@@ -267,10 +318,39 @@ def parametersAp(outputdir, peakfile, annofile, peakcaller, prefix):
 	print "\t# PARAMETERS USED FOR THIS RUN #"
 	print "\t################################"
 	print ""
-	print "peak file: "+peakfile
-	print "chromHMM annotation file: "+annofile
-	print "output directory: "+outputdir
-	print "prefix name to give to output files: "+prefix
+	print "\tpeak file: "+peakfile
+	print "\tchromHMM annotation file: "+annofile
+	print "\toutput directory: "+outputdir
+	print "\tprefix name to give to output files: "+prefix
+
+def parametersMd(outputdir, regionfile, genomefile, database, scan, prefix):
+	print ""
+	print "\t################################"
+	print "\t# PARAMETERS USED FOR THIS RUN #"
+	print "\t################################"
+	print ""
+	print "\tregion file: "+regionfile
+	print "\tgenome file: "+genomefile
+	if scan == 'ON':
+		print "\tcentral enrichment and motif scanning performed by CentriMo and Tomtom will be performed"
+		print "\tdatabase to use: "+database
+	else:
+		print "\tOnly perform de novo motif discovery"
+	print "\toutput directory: "+outputdir
+	print "\tprefix name to give to output files: "+prefix
+
+def parametersSm(outputdir, regionfile, genomefile, motiffile, exclude, prefix):
+	print ""
+	print "\t################################"
+	print "\t# PARAMETERS USED FOR THIS RUN #"
+	print "\t################################"
+	print ""
+	print "\tregion file: "+regionfile
+	print "\tgenome file: "+genomefile
+	print "\tmotif file: "+motiffile
+	print "\tgenomic region to exclude when genrating background: "+exclude
+	print "\toutput directory: "+outputdir
+	print "\tprefix name to give to output files: "+prefix
 
 def running():
 	print ""

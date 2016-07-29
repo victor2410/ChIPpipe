@@ -49,6 +49,12 @@ def toCoordFile(peakfile, outputdir, prefix):
 	os.remove(tmpfile)
 	return outputfile
 
+def toFastaFile(regionfile, genomefile, outputdir, prefix):
+	outfile = outputdir+"/"+prefix+".fa"
+	command = "bedtools getfasta -fi "+genomefile+" -bed "+regionfile+" -fo "+outfile
+	subprocess.call(command, shell=True)
+	return outfile
+
 
 def newName(file_in, outputdir): # get new tagAlign file name
 	fileprefix = getPrefix(file_in)

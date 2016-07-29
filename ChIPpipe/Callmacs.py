@@ -16,6 +16,10 @@
 from shlex import split
 import subprocess
 
-def peakCallMacs(chipfile, ctrlfile, outputdir, prefix, thresh): # peak calling 
-	command = "macs2 callpeak -t "+chipfile+" -c "+ctrlfile+" -f BED -n "+outputdir+prefix+" -g hs -p "+thresh+" --to-large -B"
-	subprocess.call(command, shell=True)
+def peakCallMacs(chipfile, ctrlfile, outputdir, prefix, pvalue, qvalue, thresh): # peak calling 
+	if pvalue == 'ON':
+		command = "macs2 callpeak -t "+chipfile+" -c "+ctrlfile+" -f BED -n "+outputdir+"/"+prefix+" -g hs -p "+thresh+" --to-large -B"
+		subprocess.call(command, shell=True)
+	else:
+		command = "macs2 callpeak -t "+chipfile+" -c "+ctrlfile+" -f BED -n "+outputdir+"/"+prefix+" -g hs -q "+thresh+" --to-large -B"
+		subprocess.call(command, shell=True)

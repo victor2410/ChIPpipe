@@ -16,8 +16,8 @@
 import os
 import sys
 import getopt
-from check import checkFastq, checkBam, checkPath, checkGenome, checkFile, checkLib, checkBed
-from print_message import usageCa, usageCp, usageCpnr, usage, usageTq, usageAp
+from check import checkFastq, checkBam, checkPath, checkGenome, checkFile, checkLib, checkBed, checkFasta, checkDataBase, checkMotif, checkExcl
+from print_message import usageCa, usageCp, usageCpnr, usage, usageTq, usageAp, usageMd, usageSm
 
 def readOptTq(argv, outputdir, selectodir, fastqfile1, fastqfile2, fastqfile, seq1, seq2, lib):
 	try:                                
@@ -148,9 +148,9 @@ def readOptCp(argv, outputdir, selectodir, rep1, rep2, ctrl1, ctrl2, ctrlsup, id
 			prefix = arg
 	return outputdir, selectodir, rep1, rep2, ctrl1, ctrl2, ctrlsup, idr, idrthresh, finalsets, plot, prefix
 
-def readOptCpnr(argv, outputdir, selectodir, bamfile, ctrlfile, thresh, qc, prefix ):
+def readOptCpnr(argv, outputdir, selectodir, bamfile, ctrlfile, thresh, pvalue, qvalue, qc, prefix ):
 	try:                                
-	    opts, args = getopt.getopt(argv, "hf:c:o:", ["help", "thresh=", "spp-qual", "name="]) # List of all short and long options possible
+	    opts, args = getopt.getopt(argv, "hf:c:o:pq", ["help", "thresh=", "spp-qual", "name="]) # List of all short and long options possible
 	except getopt.GetoptError:
 	    usageCpnr()
 	    sys.exit(2)
@@ -170,13 +170,18 @@ def readOptCpnr(argv, outputdir, selectodir, bamfile, ctrlfile, thresh, qc, pref
 				sys.exit(1)
 			outputdir = arg
 			selectodir = 'true'
+		elif opt == '-p': # p-value threshold 
+			pvalue = 'ON'
+		elif opt == '-q': # q-value threshold
+			qvalue = 'ON'
+			pvalue = 'OFF' 
 		elif opt == '--thresh': # Perform IDR analysis
 			thresh = arg
 		elif opt == '--spp-qual': # Create final peak sets
 			qc = 'ON'
 		elif opt == '--name': # Prefix to give to output file
 			prefix = arg
-	return  outputdir, selectodir, bamfile, ctrlfile, thresh, qc, prefix
+	return  outputdir, selectodir, bamfile, ctrlfile, thresh, pvalue, qvalue, qc, prefix
 
 def readOptAp(argv,  outputdir, selectodir, peakfile, annofile, peakcaller, prefix, graph):
 	try:                                
@@ -205,6 +210,68 @@ def readOptAp(argv,  outputdir, selectodir, peakfile, annofile, peakcaller, pref
 		elif opt == '--plot':
 			graph = 'ON'
 	return   outputdir, selectodir, peakfile, annofile, peakcaller, prefix, graph
+
+def readOptMd(argv,  outputdir, selectodir, regionfile, genomefile, database, scan, prefix):
+	try:                                
+	    opts, args = getopt.getopt(argv, "hf:g:o:", ["help", "name=", "db="]) # List of all short and long options possible
+	except getopt.GetoptError:
+	    usageMd()
+	    sys.exit(2)
+	for opt, arg in opts:
+		if opt in ("-h", "--help"): # Print usage message
+			usageMd()
+			sys.exit(0)
+		elif opt == '-f': # For region bed file
+			checkBed(arg)
+			regionfile = arg
+		elif opt == '-g': # For genome fasta file
+			checkFasta(arg)
+			genomefile = arg
+		elif opt == '-o': # Output directory is specified
+			if not checkPath(arg):
+				print "Error, the specified path '"+arg+"' does not exists"
+				sys.exit(1)
+			outputdir = arg
+			selectodir = 'true'
+		elif opt == '--name': # Prefix to give to output file
+			prefix = arg
+		elif opt == '--db': # database to use for motif discovery
+			checkDataBase(arg)
+			scan = 'ON'
+			database = arg
+	return   outputdir, selectodir, regionfile, genomefile, database, scan, prefix
+
+def readOptSm(argv,  outputdir, selectodir, regionfile, genomefile, motiffile, exclude, prefix):
+	try:                                
+	    opts, args = getopt.getopt(argv, "hf:g:m:o:", ["help", "name=", "excl="]) # List of all short and long options possible
+	except getopt.GetoptError:
+	    usageSm()
+	    sys.exit(2)
+	for opt, arg in opts:
+		if opt in ("-h", "--help"): # Print usage message
+			usageSm()
+			sys.exit(0)
+		elif opt == '-f': # For region bed file
+			checkBed(arg)
+			regionfile = arg
+		elif opt == '-g': # For genome fasta file
+			checkFasta(arg)
+			genomefile = arg
+		elif opt == '-o': # Output directory is specified
+			if not checkPath(arg):
+				print "Error, the specified path '"+arg+"' does not exists"
+				sys.exit(1)
+			outputdir = arg
+			selectodir = 'true'
+		elif opt == '--name': # Prefix to give to output file
+			prefix = arg
+		elif opt == '-m': # motif file to use for motif scanning
+			checkMotif(arg)
+			motiffile = arg
+		elif opt == '--excl': # genomic region to exclude when genrating backgrund files
+			checkExcl(arg)
+			exclude = arg
+	return   outputdir, selectodir, regionfile, genomefile, motiffile, exclude, prefix
 
 def readOpt(argv):
 	__version__ = "0.0.1"

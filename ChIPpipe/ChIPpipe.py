@@ -8,12 +8,13 @@
 # ======================
 
 """
-   Main wrapper for pipeline to analyze ChIP-Seq datas, 4 subfunctions :
+   Main wrapper for pipeline to analyze ChIP-Seq datas, 6 subfunctions :
     - trimQual
    	- ChIPalign
    	- CallPeaks
    	- CallPeaks_norep
    	- AnnoPeaks
+   	- MotifDiscover
 """
 
 # Packages required for this programm
@@ -26,6 +27,8 @@ from trimQual import mainTq
 from print_message import usage
 from get_opt import readOpt
 from AnnoPeaks import mainAp
+from MotifDiscover import mainMd
+from ScanMotif import mainSm
 
 
 __all__ = ['main']
@@ -45,6 +48,10 @@ def main():
 		mainTq(sys.argv[1:])
 	elif sys.argv[1] == 'AnnoPeaks':
 		mainAp(sys.argv[1:])
+	elif sys.argv[1] == 'MotifDiscover': # Call to MotifDiscover tool
+		mainMd(sys.argv[1:])
+	elif sys.argv[1] == 'ScanMotif': # Call to ScanMotif tool
+		mainSm(sys.argv[1:])
 	else: # Wrong parameter specified, print usage message and then exit
 		print "Wrong parameter specified, please check your options"
 		usage()

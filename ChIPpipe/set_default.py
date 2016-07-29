@@ -76,7 +76,9 @@ def initParamCpnr(): # Initialize all parameters to default values
 	thresh = '1e-3'
 	qc = 'OFF'
 	prefix = str()
-	return outputdir, selectodir, bamfile, ctrlfile, thresh, qc, prefix
+	pvalue = 'ON'
+	qvalue = 'OFF'
+	return outputdir, selectodir, bamfile, ctrlfile, thresh, pvalue, qvalue, qc, prefix
 
 def initParamAp():
 	outputdir = os.getcwd()+'/AnnoPeaks_out'
@@ -87,6 +89,26 @@ def initParamAp():
 	peakcaller = str()
 	graph = 'OFF'
 	return outputdir, selectodir, peakfile, annofile, peakcaller, prefix, graph 
+
+def initParamMd():
+	outputdir = os.getcwd()+'/MotifDiscover_out'
+	selectodir = 'false'
+	regionfile = str()
+	genomefile = str()
+	database = str()
+	scan = 'OFF'
+	prefix = 'MotifDiscover'
+	return outputdir, selectodir, regionfile, genomefile, database, scan, prefix
+
+def initParamSm():
+	outputdir = os.getcwd()+'/ScanMotif_out'
+	selectodir = 'false'
+	regionfile = str()
+	genomefile = str()
+	motiffile = str()
+	prefix = 'ScanMotif'
+	exclude = 'NONE'
+	return outputdir, selectodir, regionfile, genomefile, motiffile, exclude, prefix
 
 def getPrefix(file_in): # Get the prefix name of a specified file when no prefix is given
 	m = re.search('[^.]*',file_in)

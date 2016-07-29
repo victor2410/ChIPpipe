@@ -56,17 +56,39 @@ def checkBam(bamfile): # Check if a given file is in fastq format
 	if fileext[1] == '.bam': # if the extension is '.bam', the file is in the right format, quit this function and continue 
 		return
 	else: # The extension is different whatever it is, print an error message and then exit the programm
-		print "Error the specified file '"+bamfile+"' is not in fastq format"
+		print "Error the specified file '"+bamfile+"' is not in bam format"
 		sys.exit(1)
 	return
 
 def checkBed(bedfile): # Check if a given file is in fastq format
 	checkFile(bedfile) # Check if the file exist
 	fileext = os.path.splitext(bedfile) 
-	if fileext[1] == '.bed': # if the extension is '.bam', the file is in the right format, quit this function and continue 
+	if fileext[1] == '.bed': # if the extension is '.bed', the file is in the right format, quit this function and continue 
 		return
 	else: # The extension is different whatever it is, print an error message and then exit the programm
-		print "Error the specified file '"+bedfile+"' is not in fastq format"
+		print "Error the specified file '"+bedfile+"' is not in bed format"
+		sys.exit(1)
+	return
+
+def checkMotif(motiffile): # Check if a given file is in fastq format
+	checkFile(motiffile) # Check if the file exist
+	fileext = os.path.splitext(motiffile) 
+	if fileext[1] == '.motif': # if the extension is '.motif', the file is in the right format, quit this function and continue 
+		return
+	else: # The extension is different whatever it is, print an error message and then exit the programm
+		print "Error the specified file '"+motiffile+"' is not in motif format"
+		sys.exit(1)
+	return
+
+def checkFasta(fastafile): # Check if a given file is in fastq format
+	checkFile(fastafile) # Check if the file exist
+	fileext = os.path.splitext(fastafile) 
+	if fileext[1] == '.fa': # if the extension is '.fa', the file is in the right format, quit this function and continue 
+		return
+	elif fileext[1] == '.fasta': # if the extension is '.fasta', the file is in the right format, quit this function and continue 
+		return
+	else: # The extension is different whatever it is, print an error message and then exit the programm
+		print "Error the specified file '"+fastafile+"' is not in fasta format"
 		sys.exit(1)
 	return
 
@@ -92,6 +114,18 @@ def checkGenome(genomefile): # Check the existence of fasta file genome
 def checkLib(lib): # check if the integer specified is 0 or 1
 	if int(lib) != 0 and int(lib) != 1: # if integer not expected, print an error message and then exit the programm
 		print "Error, library must be 0 for 1 or sequencer used, please check with -h option"
+		sys.exit(1)
+	return
+
+def checkDataBase(db): # check if the integer specified is 0 or 1
+	if str(db) != 'JASPAR' and str(db) != 'HUMAN' and str(db) != 'UNIPROBE': # if wrong database selected, print an error message and then exit
+		print "Error, wrong database selected, must be JASPAR, HUMAN or UNIPROBE, see -h option for more information"
+		sys.exit(1)
+	return
+
+def checkExcl(string): # check if the integer specified is 0 or 1
+	if str(string) != 'EXON' and str(string) != 'BLACKLIST' and str(string) != 'BOTH': # if wrong string selected, print an error message and then exit
+		print "Error, wrong excluding name selected, must be EXON, BLACKLIST or BOTH, see -h option for more information"
 		sys.exit(1)
 	return
 
@@ -145,5 +179,26 @@ def checkRequiredAp(peakfile, annofile, peakcaller): # Check if all required opt
 		sys.exit(1)
 	if annofile == '': # means that no options '-a' have been specified, print an error message and exit the programm
 		print "Error the options -a have not been used, this option are required to run this programm"
+		sys.exit(1)
+	return
+
+def checkRequiredMd(regionfile, genomefile): # Check if all required option are specified
+	if regionfile == '': # means that no options '-f' have been specified, print an error message and exit the programm
+ 		print "Error the options -f have not been used, this option are required to run this programm"
+		sys.exit(1)
+	if genomefile == '': # means that no options '-g' have been specified, print an error message and exit the programm
+ 		print "Error the options -g have not been used, this option are required to run this programm"
+		sys.exit(1)
+	return
+
+def checkRequiredSm(regionfile, genomefile, motiffile): # Check if all required option are specified
+	if regionfile == '': # means that no options '-f' have been specified, print an error message and exit the programm
+ 		print "Error the options -f have not been used, this option are required to run this programm"
+		sys.exit(1)
+	if genomefile == '': # means that no options '-g' have been specified, print an error message and exit the programm
+ 		print "Error the options -g have not been used, this option are required to run this programm"
+		sys.exit(1)
+	if motiffile == '': # means that no options '-m' have been specified, print an error message and exit the programm
+ 		print "Error the options -m have not been used, this option are required to run this programm"
 		sys.exit(1)
 	return

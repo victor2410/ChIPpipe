@@ -20,6 +20,7 @@
 
 import subprocess
 import os
+from set_default import getPrefix
 
 def sortAndIndexFile(settingssort, settingsindex, outputdir, bamname, prefix):
 	print ""
@@ -49,3 +50,10 @@ def indexFile(settings, outputdir, bamname): # Create an index for the final ali
 	else:
 		subprocess.check_call(['samtools', 'index', bamname]) # command line : "samtools index bamname"
 		print "Step8 : Indexing final alignment file achieved..."
+
+def sortScoreFile(scorefile, outputdir):
+	filename = getPrefix(scorefile)
+	outfile = outputdir+"/"+filename+"_2.txt"
+	command = "sort -k1,1nr "+scorefile+" > "+outfile
+	subprocess.call(command, shell=True)
+	return outfile
