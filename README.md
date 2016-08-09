@@ -84,8 +84,8 @@ sudo apt-get install r-base-core
 ```
 
 
-All .r and .R scripts required are present in the folder Scripts
-For fastqc, bowtie2, samtools, picard-tools, macs2, python and R, these tools must be accessible in your $PATH environment variable.
+##### All .r and .R scripts required are present in the folder Scripts
+##### For fastqc, bowtie2, samtools, picard-tools, macs2, python and R, these tools must be accessible in your $PATH environment variable.
 
 
 ## Installation
