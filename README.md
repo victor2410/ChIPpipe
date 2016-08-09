@@ -144,7 +144,7 @@ Check software version
 ## Subprogramms
 
 
-trimQual:
+### trimQual:
 	
 	Call:
 
@@ -163,7 +163,7 @@ trimQual:
 		--adapt <PE|SE>	: Sequencing library used for adaptators (default depend on -f (SE) or -1 (PE) options)
 		-h, --help 	: print this usage message
 
-ChIPalign:
+### ChIPalign:
 	
 	Call:
 
@@ -189,7 +189,7 @@ ChIPalign:
 		--bamIndex : index final bam file (required --sort option) (default : OFF)
 		-h, --help 	: usage
 
-CallPeaks:
+### CallPeaks:
 	
 	Call:
 	
@@ -212,7 +212,7 @@ CallPeaks:
 		-h, --help 	: usage
 
 
-CallPeaks_norep:
+### CallPeaks_norep:
 
 	Call:
 
@@ -231,7 +231,7 @@ CallPeaks_norep:
 		--name NAME : prefix to give to output files (default is CallPeaks_macs)
 		-h, --help 	: usage
 
-AnnoPeaks:
+### AnnoPeaks:
 	
 	Call:
 
@@ -249,22 +249,22 @@ AnnoPeaks:
 		--name NAME : prefix to give to output files (default is AnnoPeaks)
 		-h, --help 	: usage
 	
-##########
-# Output #
-##########
 
-trimQual :
+## Output 
+
+
+### trimQual :
 	
 	This tool will produce a folder (depend on -o option) which will contains two subfolders:
 
 		-> One fasqtc_report folder which contains all fastQC quality check outputs
 		-> One fastq_trim folder which contains all fastq files trimmed  
 
-ChIPalign:
+### ChIPalign:
 
 	This tool will produce in a folder (depend on -o option) a unique bam file named PREFIX.bam and an indexed bam file named PREFIX.bam.bai (if --bamIndex was specified).
 
-CallPeaks:
+### CallPeaks:
 
 	This tool will create four differents folders:
 
@@ -273,14 +273,14 @@ CallPeaks:
 		-> One IDR folder (if --idr options have been set) which contains all file produce by IDR analysis and one folder plots which contains all IDR graphs if --no-plots option have not been set
 		-> finalsets folder (if --sets option have been set) which contains the two final peaks sets (optimum and conservative)
 
-CallPeaks_norep:
+### CallPeaks_norep:
 
 	This tool will generate two folders:
 
 		-> One tagAlign folder which contains all file tranformed from the initial bam file (treatment and Input file...) in tagAlign format
 		-> One PeakCalling folder which contains all file issue from macs2 PeakCalling for each tagAlign file (including cross-correlation graphs)
 		
-AnnoPeaks:
+### AnnoPeaks:
 	
 	This tool will generate four differents bed files:
 	
