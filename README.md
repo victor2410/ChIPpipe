@@ -187,125 +187,131 @@ Optionnal arguments:
 
 ### ChIPalign:
 	
-	Call:
+Call:
 
-		ChIPpipe ChIPalign [-f FILE.fastq | -1 FILE_R1.fastq -2 FILE_R2.fastq] -g GENOME_PREFIX [options]
+```
+ChIPpipe ChIPalign [-f FILE.fastq | -1 FILE_R1.fastq -2 FILE_R2.fastq] -g GENOME_PREFIX [options]
 
-	Required arguments:
+Required arguments:
 
-		-f FASTQ_FILE : full path and name of single end fastq file
-		or
-		-1 FASTQ_FILE_R1 and -2 FASTQ_FILE_R2 : full path and name of paired end R1 and R2 files
-		-g GENOME_PREFIX: full path and prefix of genome reference fasta file (without '.fa' or '.fasta' extension)
+-f FASTQ_FILE : full path and name of single end fastq file
+or
+-1 FASTQ_FILE_R1 and -2 FASTQ_FILE_R2 : full path and name of paired end R1 and R2 files
+-g GENOME_PREFIX: full path and prefix of genome reference fasta file (without '.fa' or '.fasta' extension)
 
-	Optionnal arguments:
+Optionnal arguments:
 
-		-o DIRECTORY : to specify the place you want your output files in (default : create ChIPalign_out in current directory)
-		--name PREFIX : prefix name to give to output files (default is fastqfile prefix)
-		--index : index the reference genome (required for alignment but just need to be done once) (default : OFF)
-		-q INT : filter reads with mapping quality lower than specific threshold (INT) (default : OFF)
-		-F : filter unmapped reads (default : OFF)
-		-L FILE : filter reads that mapp inside specific regions like blacklist regions given in specified FILE (default : OFF)
-		--rmdup : filter PCR duplicates and non uniquely mapable reads (default : OFF)
-		--sort : sort final bam file per reads position (default : OFF)
-		--bamIndex : index final bam file (required --sort option) (default : OFF)
-		-h, --help 	: usage
+-o DIRECTORY : to specify the place you want your output files in (default : create ChIPalign_out in current directory)
+--name PREFIX : prefix name to give to output files (default is fastqfile prefix)
+--index : index the reference genome (required for alignment but just need to be done once) (default : OFF)
+-q INT : filter reads with mapping quality lower than specific threshold (INT) (default : OFF)
+-F : filter unmapped reads (default : OFF)
+-L FILE : filter reads that mapp inside specific regions like blacklist regions given in specified FILE (default : OFF)
+--rmdup : filter PCR duplicates and non uniquely mapable reads (default : OFF)
+--sort : sort final bam file per reads position (default : OFF)
+--bamIndex : index final bam file (required --sort option) (default : OFF)
+-h, --help 	: usage
+```
 
 ### CallPeaks:
 	
-	Call:
+Call:
+
+```	
+ChIPpipe CallPeaks -1 FILE_REP1.bam -2 FILE_REP2.bam --c1 CONTROL_FILE.bam [options]
 	
-		ChIPpipe CallPeaks -1 FILE_REP1.bam -2 FILE_REP2.bam --c1 CONTROL_FILE.bam [options]
-	
-	Required Arguments:
+Required Arguments:
 
-		-1 FILE_REP1	: full path and name of replicate 1 file (bam file)
-		-2 FILE_REP2	: full path and name of replicate 2 file (bam file)
-		--c1 FILE_CONTROL	:  full path and name of control file (bam file)
+-1 FILE_REP1	: full path and name of replicate 1 file (bam file)
+-2 FILE_REP2	: full path and name of replicate 2 file (bam file)
+--c1 FILE_CONTROL	:  full path and name of control file (bam file)
 
-	Optionnal Arguments:
+Optionnal Arguments:
 
-		--c2 FILE_CONTROL	:  full path and name of second control file (if there is one) (bam file)
-		-o DIRECTORY	: full path to directory in wich write all output files (default create a CallPeaks_out directory in the current directory)
-		--idr FLOAT	: Perform IDR analysis on output peakCalling files with a specified threshold (0.01 or 0.02 for transcription factor) (default : OFF)
-		--sets	: Create final peak sets (conservative and optimum) corresponding to IDR threshold (require --idr option) (default :OFF)
-		--no-plots	: Do not plot IDR results (default : ON)
-		--name NAME : prefix to give to output files (default is CallPeaks)
-		-h, --help 	: usage
-
+--c2 FILE_CONTROL	:  full path and name of second control file (if there is one) (bam file)
+-o DIRECTORY	: full path to directory in wich write all output files (default create a CallPeaks_out directory in the current directory)
+--idr FLOAT	: Perform IDR analysis on output peakCalling files with a specified threshold (0.01 or 0.02 for transcription factor) (default : OFF)
+--sets	: Create final peak sets (conservative and optimum) corresponding to IDR threshold (require --idr option) (default :OFF)
+--no-plots	: Do not plot IDR results (default : ON)
+--name NAME : prefix to give to output files (default is CallPeaks)
+-h, --help 	: usage
+```
 
 ### CallPeaks_norep:
 
-	Call:
+Call:
 
-		ChIPpipe CallPeaks_norep -f FILE.bam -c CONTROL_FILE.bam [options]
+```
+ChIPpipe CallPeaks_norep -f FILE.bam -c CONTROL_FILE.bam [options]
 	
-	Required Arguments:
+Required Arguments:
 
-		-f FILE	: full path and name of alignment file to analyze (bam format)
-		-c FILE	: full path and name of Input alignment file to use (bam format)
+-f FILE	: full path and name of alignment file to analyze (bam format)
+-c FILE	: full path and name of Input alignment file to use (bam format)
 
-	Optionnal Arguments:
+Optionnal Arguments:
 
-		-o OUTPUTDIRECTORY	: full path and name of directory in wich writes all output files (default create a new repositorie in the current directory)
-		--thresh STR	: pvalue threshold for peak calling (ex : 1e-7 ; default = 1e-3)
-		--spp-qual	: Cross-correlation analysis performed by spp before calling peaks (default: OFF)
-		--name NAME : prefix to give to output files (default is CallPeaks_macs)
-		-h, --help 	: usage
+-o OUTPUTDIRECTORY	: full path and name of directory in wich writes all output files (default create a new repositorie in the current directory)
+--thresh STR	: pvalue threshold for peak calling (ex : 1e-7 ; default = 1e-3)
+--spp-qual	: Cross-correlation analysis performed by spp before calling peaks (default: OFF)
+--name NAME : prefix to give to output files (default is CallPeaks_macs)
+-h, --help 	: usage
+```
 
 ### AnnoPeaks:
 	
-	Call:
+Call:
 
-		ChIPpipe AnnoPeaks -f <path/peakfile> -a <path/ChrommHMMannotationFile.bed> --peakCaller <spp|macs2> [options]
+```
+ChIPpipe AnnoPeaks -f <path/peakfile> -a <path/ChrommHMMannotationFile.bed> --peakCaller <spp|macs2> [options]
 
-	Required Arguments:
+Required Arguments:
 
-		-f FILE	: full path and name of peak file 
-		-a FILE	: full path and name of ChromHMM annotation file (bed file)
+-f FILE	: full path and name of peak file 
+-a FILE	: full path and name of ChromHMM annotation file (bed file)
 
-	Optionnal Arguments:
+Optionnal Arguments:
 
-		-o OUTPUTDIRECTORY	: full path and name of directory in wich writes all output files (default create a new repositorie in the current directory)
-		--plot	: for plotting annotation results (default is off)
-		--name NAME : prefix to give to output files (default is AnnoPeaks)
-		-h, --help 	: usage
-	
+-o OUTPUTDIRECTORY	: full path and name of directory in wich writes all output files (default create a new repositorie in the current directory)
+--plot	: for plotting annotation results (default is off)
+--name NAME : prefix to give to output files (default is AnnoPeaks)
+-h, --help 	: usage
+```	
 
 ## Output 
 
 
 ### trimQual :
 	
-	This tool will produce a folder (depend on -o option) which will contains two subfolders:
+This tool will produce a folder (depend on -o option) which will contains two subfolders:
 
-		-> One fasqtc_report folder which contains all fastQC quality check outputs
-		-> One fastq_trim folder which contains all fastq files trimmed  
+* One fasqtc_report folder which contains all fastQC quality check outputs
+* One fastq_trim folder which contains all fastq files trimmed
 
 ### ChIPalign:
 
-	This tool will produce in a folder (depend on -o option) a unique bam file named PREFIX.bam and an indexed bam file named PREFIX.bam.bai (if --bamIndex was specified).
+This tool will produce in a folder (depend on -o option) a unique bam file named PREFIX.bam and an indexed bam file named PREFIX.bam.bai (if --bamIndex was specified).
 
 ### CallPeaks:
 
-	This tool will create four differents folders:
+This tool will create four differents folders:
 
-		-> One tagAlign folder which contains all file tranformed from the initial bam file (replicates, pseudo-replicates, pool, control files...) in tagAlign format
-		-> One PeakCalling folder which contains all file issue from spp PeakCalling for each tagAlign file (including cross-correlation graphs)
-		-> One IDR folder (if --idr options have been set) which contains all file produce by IDR analysis and one folder plots which contains all IDR graphs if --no-plots option have not been set
-		-> finalsets folder (if --sets option have been set) which contains the two final peaks sets (optimum and conservative)
+* One tagAlign folder which contains all file tranformed from the initial bam file (replicates, pseudo-replicates, pool, control files...) in tagAlign format
+* One PeakCalling folder which contains all file issue from spp PeakCalling for each tagAlign file (including cross-correlation graphs)
+* One IDR folder (if --idr options have been set) which contains all file produce by IDR analysis and one folder plots which contains all IDR graphs if --no-plots option have not been set
+* finalsets folder (if --sets option have been set) which contains the two final peaks sets (optimum and conservative)
 
 ### CallPeaks_norep:
 
-	This tool will generate two folders:
+This tool will generate two folders:
 
-		-> One tagAlign folder which contains all file tranformed from the initial bam file (treatment and Input file...) in tagAlign format
-		-> One PeakCalling folder which contains all file issue from macs2 PeakCalling for each tagAlign file (including cross-correlation graphs)
+* One tagAlign folder which contains all file tranformed from the initial bam file (treatment and Input file...) in tagAlign format
+* One PeakCalling folder which contains all file issue from macs2 PeakCalling for each tagAlign file (including cross-correlation graphs)
 		
 ### AnnoPeaks:
 	
-	This tool will generate four differents bed files:
+This tool will generate four differents bed files:
 	
-		-> One for all promoter and one for all enhancer region
-		-> One for ChIP-seq peaks that fall into promoter region and one for peaks that fall into enhancer region
+* One for all promoter and one for all enhancer region
+* One for ChIP-seq peaks that fall into promoter region and one for peaks that fall into enhancer region
 
