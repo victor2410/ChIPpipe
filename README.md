@@ -30,6 +30,10 @@ For questions, comments that you should be interesting for improve this pipeline
 
 * ENCODE IDR analysis : https://sites.google.com/site/anshulkundaje/projects/idr
 
+* MEME suite : http://meme-suite.org/index.html
+
+* Homer : http://homer.salk.edu/homer/
+
 
 
 ## Presentation
