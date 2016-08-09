@@ -10,25 +10,25 @@ For questions, comments that you should be interesting for improve this pipeline
 ## Documentation
 
 
--> fastqc documentation : http://www.bioinformatics.babraham.ac.uk/projects/fastqc/
+* fastqc documentation : http://www.bioinformatics.babraham.ac.uk/projects/fastqc/
 
--> Trimmomatic documentation : http://www.usadellab.org/cms/?page=trimmomatic
+* Trimmomatic documentation : http://www.usadellab.org/cms/?page=trimmomatic
 
--> samtools documentation : http://samtools.sourceforge.net/
+* samtools documentation : http://samtools.sourceforge.net/
 
--> bowtie2 documentation : http://bowtie-bio.sourceforge.net/bowtie2/index.shtml
+* bowtie2 documentation : http://bowtie-bio.sourceforge.net/bowtie2/index.shtml
 
--> picard-tools documentation : https://broadinstitute.github.io/picard/
+* picard-tools documentation : https://broadinstitute.github.io/picard/
 
--> python documentation : https://www.python.org/
+* python documentation : https://www.python.org/
 
--> spp documentation : http://compbio.med.harvard.edu/Supplements/ChIP-seq/
+* spp documentation : http://compbio.med.harvard.edu/Supplements/ChIP-seq/
 
--> macs2 documentation : https://github.com/taoliu/MACS
+* macs2 documentation : https://github.com/taoliu/MACS
 
--> R documentation : https://www.r-project.org/other-docs.html
+* R documentation : https://www.r-project.org/other-docs.html
 
--> ENCODE IDR analysis : https://sites.google.com/site/anshulkundaje/projects/idr
+* ENCODE IDR analysis : https://sites.google.com/site/anshulkundaje/projects/idr
 
 
 
@@ -49,7 +49,8 @@ This pipeline is implemented in python.
 ## Required tools
 
 
-#####To run this pipeline, these tools are required :
+To run this pipeline, these tools are required :
+
 * fastqc (v0.10.1), required for trimQual, from shell terminal:
 ```
 sudo apt-get install fastqc
@@ -83,9 +84,9 @@ sudo apt-get install r-base
 sudo apt-get install r-base-core
 ```
 
+All .r and .R scripts required are present in the folder Scripts
 
-##### All .r and .R scripts required are present in the folder Scripts
-##### For fastqc, bowtie2, samtools, picard-tools, macs2, python and R, these tools must be accessible in your $PATH environment variable.
+For fastqc, bowtie2, samtools, picard-tools, macs2, python and R, these tools must be accessible in your $PATH environment variable.
 
 
 ## Installation
