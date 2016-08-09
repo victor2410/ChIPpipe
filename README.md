@@ -50,34 +50,47 @@ This pipeline is implemented in python.
 
 
 To run this pipeline, these tools are required :
- 
-	-fastqc (v0.10.1), required for trimQual
-		from shell terminal:
-		sudo apt-get install fastqc
-	-Trimmomatic (v0.35) required for trimQual
-		present in the folder Scripts
-	-bowtie2 (v2.1.0), required for ChIPalign
-		from shell terminal:
-		sudo apt-get install bowtie2
-	-samtools (v1.3.1), required for ChIPalign, CallPeaks and CallPeaks_norep
-		from shell terminal:
-		sudo apt-get install samtools
-	-picard tools (v1.95), required for ChIPalign
-		from shell terminal:
-		sudo apt-get install picard-tools
-	-spp (v1.10.1), required for CallPeaks and CallPeaks_norep
-		from shell terminal:
-		cd path/to/ChIPpipe/Scripts
-		R CMD INSTALL spp_1.10.1.tar.gz
-	-macs2 (v2.1.1), required for CallPeaks_norep
-		from shell terminal:
-		sudo apt-get install macs2
-	-python (<=v2.7), required for all
-	-R (v3.0.2), required for CallPeaks and CallPeaks_norep
-		from shell terminal:
-		sudo apt-get install r-base
-		sudo apt-get install r-base-core
-		All .r and .R scripts required are present in the folder Scripts
+fastqc (v0.10.1), required for trimQual
+from shell terminal:
+```
+sudo apt-get install fastqc
+```
+Trimmomatic (v0.35) required for trimQual
+present in the folder Scripts
+bowtie2 (v2.1.0), required for ChIPalign
+from shell terminal:
+```
+sudo apt-get install bowtie2
+```
+samtools (v1.3.1), required for ChIPalign, CallPeaks and CallPeaks_norep
+from shell terminal:
+```
+sudo apt-get install samtools
+```
+picard tools (v1.95), required for ChIPalign
+from shell terminal:
+```
+sudo apt-get install picard-tools
+```
+spp (v1.10.1), required for CallPeaks and CallPeaks_norep
+from shell terminal:
+```
+cd path/to/ChIPpipe/Scripts
+R CMD INSTALL spp_1.10.1.tar.gz
+```
+macs2 (v2.1.1), required for CallPeaks_norep
+from shell terminal:
+```
+sudo apt-get install macs2
+```
+python (<=v2.7), required for all
+R (v3.0.2), required for CallPeaks and CallPeaks_norep
+from shell terminal:
+```
+sudo apt-get install r-base
+sudo apt-get install r-base-core
+```
+All .r and .R scripts required are present in the folder Scripts
 
 For fastqc, bowtie2, samtools, picard-tools, macs2, python and R, these tools must be accessible in your $PATH environment variable.
 
@@ -86,34 +99,35 @@ For fastqc, bowtie2, samtools, picard-tools, macs2, python and R, these tools mu
 
 
 After installed all the required tools, go to ChIPpipe directory and install it with python.
-
-	from shell terminal:
-		cd /Path/to/ChIPpipe
-		sudo python setup.py install
+from shell terminal:
+```
+cd /Path/to/ChIPpipe
+sudo python setup.py install
+```
 
 This will add to your environment variable the command ChIPpipe.
 You also need to indicate path to Rscripts in your .bashrc
-
-	from shell terminal:
-		cd $HOME
-		gedit .bashrc
-	Add the following line:
-		export RCHIPpipe_PATH = "/fullpath/to/ChIPpipe/Scripts"
-	then from shell terminal:
-		source ~.bashrc
-
+from shell terminal:
+```
+cd $HOME
+gedit .bashrc
+````
+Add the following line:
+export RCHIPpipe_PATH = "/fullpath/to/ChIPpipe/Scripts"
+then from shell terminal:
+```
+source ~.bashrc
+```
 
 ## Usage
 
 
 from shell terminal launch :
-
-		ChIPpipe
-		or
-		ChIPpipe -h 
-		or 
-		ChIPpipe --help
-
+```
+ChIPpipe
+ChIPpipe -h 
+ChIPpipe --help
+```
 this will print to screen the usage message :
 
 		usage ChIPpipe [-h] [--version]
