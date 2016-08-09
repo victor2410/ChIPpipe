@@ -1,11 +1,14 @@
 # ChIPpipe, python package for ChIP-seq datas analysis
 
-##########
-# Author #
-##########
+
+## Author
+
 
 For questions, comments that you should be interesting for improve this pipeline, please send email to victor.gaborit2@gmail.com
-see also:
+
+
+## Documentation
+
 
 -> fastqc documentation : http://www.bioinformatics.babraham.ac.uk/projects/fastqc/
 
@@ -28,9 +31,9 @@ see also:
 -> ENCODE IDR analysis : https://sites.google.com/site/anshulkundaje/projects/idr
 
 
-################
-# Presentation #
-################
+
+## Presentation
+
 
 This pipeline is created to perform full analysis of ChIP-seq datas. This pipeline is only automatization of existing tools or pipelines created to perform ChIP-seq datas analysis in particular case there is no biological replicates. There are three differents programm in this pipeline :
 
