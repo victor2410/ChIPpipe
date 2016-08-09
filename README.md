@@ -166,22 +166,23 @@ ChIPpipe --version
 
 ### trimQual:
 	
-	Call:
+Call:
 
-		ChIPpipe trimQual [-f FILE.fastq(.gz)> | -1 FILE_R1.fastq(.gz)> -2 FILE_R2.fastq(.gz)>] --lib INT [options]
 
-	Required arguments:
+>ChIPpipe trimQual [-f FILE.fastq(.gz)> | -1 FILE_R1.fastq(.gz)> -2 FILE_R2.fastq(.gz)>] --lib INT [options]
 
-		-f FILE	: full path and name of single end fastq file to analze (could be .fastq or .fastq.gz)
-		or
-		-1 FILE_R1 -2 FILE_R2	: full path and name of fastq file R1 (-1) and R2 (-2) for paired end data (could be .fastq or .fastq.gz)
-		--lib INT	: select the adaptator library following used sequencer (0: Illumina Genome Analyzer IIx ; 1: Hi Seq 2000)
+> Required arguments:
 
-	Optionnal arguments:
+> -f FILE	: full path and name of single end fastq file to analze (could be .fastq or .fastq.gz)
+> or
+> -1 FILE_R1 -2 FILE_R2	: full path and name of fastq file R1 (-1) and R2 (-2) for paired end data (could be .fastq or .fastq.gz)
+> --lib INT	: select the adaptator library following used sequencer (0: Illumina Genome Analyzer IIx ; 1: Hi Seq 2000)
 
-		-o DIRECTORY	: output directory in which put all output files (default create trimQual_out in current directory)
-		--adapt <PE|SE>	: Sequencing library used for adaptators (default depend on -f (SE) or -1 (PE) options)
-		-h, --help 	: print this usage message
+> Optionnal arguments:
+
+> -o DIRECTORY	: output directory in which put all output files (default create trimQual_out in current directory)
+> --adapt <PE|SE>	: Sequencing library used for adaptators (default depend on -f (SE) or -1 (PE) options)
+> -h, --help 	: print this usage message
 
 ### ChIPalign:
 	
