@@ -37,11 +37,11 @@ For questions, comments that you should be interesting for improve this pipeline
 
 This pipeline is created to perform full analysis of ChIP-seq datas. This pipeline is only automatization of existing tools or pipelines created to perform ChIP-seq datas analysis in particular case there is no biological replicates. There are three differents programm in this pipeline :
 
-	-> trimQual : Quality check and trimming of fastq files
-	-> ChIPalign : Alignment and filtration of ChIP-seq fastq files
-	-> CallPeaks : Peak Calling based on ENCODE protocol with IDR analysis (requiring replicates)
-	-> CallPeaks_norep : Peak Calling related on macs2 and used when no replicates are available
-	-> AnnoPeaks : Annotate ChIP-seq peaks with ChromHMM annotation file
+* trimQual : Quality check and trimming of fastq files
+* ChIPalign : Alignment and filtration of ChIP-seq fastq files
+* CallPeaks : Peak Calling based on ENCODE protocol with IDR analysis (requiring replicates)
+* CallPeaks_norep : Peak Calling related on macs2 and used when no replicates are available
+* AnnoPeaks : Annotate ChIP-seq peaks with ChromHMM annotation file
 
 This pipeline is implemented in python.
 
@@ -93,22 +93,31 @@ For fastqc, bowtie2, samtools, picard-tools, macs2, python and R, these tools mu
 
 
 After installed all the required tools, go to ChIPpipe directory and install it with python.
+
 from shell terminal:
+
 ```
 cd /Path/to/ChIPpipe
 sudo python setup.py install
 ```
 
 This will add to your environment variable the command ChIPpipe.
+
 You also need to indicate path to Rscripts in your .bashrc
+
 from shell terminal:
+
 ```
 cd $HOME
 gedit .bashrc
 ````
+
 Add the following line:
-export RCHIPpipe_PATH = "/fullpath/to/ChIPpipe/Scripts"
+
+> export RCHIPpipe_PATH = "/fullpath/to/ChIPpipe/Scripts"
+
 then from shell terminal:
+
 ```
 source ~.bashrc
 ```
@@ -117,36 +126,39 @@ source ~.bashrc
 
 
 from shell terminal launch :
+
 ```
 ChIPpipe
 ChIPpipe -h 
 ChIPpipe --help
 ```
+
 this will print to screen the usage message :
 
-		usage ChIPpipe [-h] [--version]
-		
-		{trimQual, ChIPalign, CallPeaks, CallPeaks_norep, AnnoPeaks}
+```
+usage ChIPpipe [-h] [--version]
+	
+{trimQual, ChIPalign, CallPeaks, CallPeaks_norep, AnnoPeaks}
 
-		ChIPpipe, pipeline for alignment and peak calling of ChIP-Seq datas
+ChIPpipe, pipeline for alignment and peak calling of ChIP-Seq datas
 
-		POSITIONAL COMMANDS:
-		trimQual	Quality check and trimming of ChIP-seq fastq
-		ChIPalign	Alignment and filtration of ChIP-Seq fastq
-		CallPeaks	PeakCalling based on IDR analysis protocol proposed by ENCODE (requiring biological replicates)
-		CallPeaks_norep	PeakCalling when no biological replicates are available
-		AnnoPeaks	Annotate ChIP-seq peaks with ChromHMM annotation file
+POSITIONAL COMMANDS:
+trimQual	Quality check and trimming of ChIP-seq fastq
+ChIPalign	Alignment and filtration of ChIP-Seq fastq
+CallPeaks	PeakCalling based on IDR analysis protocol proposed by ENCODE (requiring biological replicates)
+CallPeaks_norep	PeakCalling when no biological replicates are available
+AnnoPeaks	Annotate ChIP-seq peaks with ChromHMM annotation file
 
-		OPTIONAL ARGUMENTS:
-			-h, --help 	: usage.
-			--version : version of ChIPpipe
-
+OPTIONAL ARGUMENTS:
+-h, --help 	: usage.
+--version : version of ChIPpipe
+```
 
 Check software version 
-
-		ChIPpipe --version
-			ChIPpipe.0.0.1
-
+```
+ChIPpipe --version
+```
+> ChIPpipe.0.0.1
 
 
 ## Subprogramms
