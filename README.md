@@ -45,9 +45,9 @@ This pipeline is created to perform full analysis of ChIP-seq datas. This pipeli
 
 This pipeline is implemented in python.
 
-##################
-# Required tools #
-##################
+
+## Required tools
+
 
 To run this pipeline, these tools are required :
  
@@ -81,9 +81,9 @@ To run this pipeline, these tools are required :
 
 For fastqc, bowtie2, samtools, picard-tools, macs2, python and R, these tools must be accessible in your $PATH environment variable.
 
-################
-# Installation #
-################
+
+## Installation
+
 
 After installed all the required tools, go to ChIPpipe directory and install it with python.
 
@@ -102,9 +102,9 @@ You also need to indicate path to Rscripts in your .bashrc
 	then from shell terminal:
 		source ~.bashrc
 
-#########
-# Usage #
-#########
+
+## Usage
+
 
 from shell terminal launch :
 
@@ -140,9 +140,9 @@ Check software version
 			ChIPpipe.0.0.1
 
 
-################
-# Subprogramms #
-################
+
+## Subprogramms
+
 
 trimQual:
 	
