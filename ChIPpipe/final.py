@@ -33,3 +33,14 @@ def createFinalSets(poolfile, control, nt, np, outputdir, prefix):
 	subprocess.call(command, shell=True)
 	print "Done"
 	return
+
+def createFinalSets2(chipfile, control, np, outputdir, prefix):
+	print "Creating peak set..."
+	tmp = getPrefix(chipfile)
+	tmpctrl = getPrefix(control)
+	filein = outputdir+"/PeakCalling/"+tmp+".tagAlign_VS_"+tmpctrl+".tagAlign.regionPeak.gz"
+	fileout = outputdir+"/finalsets/"+prefix+"_spp.regionPeak.gz"
+	command = "zcat "+filein+"|sort -k7nr,7nr|head -n "+str(np)+"|gzip -c > "+fileout # get only the np first peaks
+	subprocess.call(command, shell=True)
+	print "Done"
+	return

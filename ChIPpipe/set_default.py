@@ -78,7 +78,8 @@ def initParamCpnr(): # Initialize all parameters to default values
 	prefix = str()
 	pvalue = 'ON'
 	qvalue = 'OFF'
-	return outputdir, selectodir, bamfile, ctrlfile, thresh, pvalue, qvalue, qc, prefix
+	spp = 'OFF'
+	return outputdir, selectodir, bamfile, ctrlfile, thresh, pvalue, qvalue, qc, prefix, spp
 
 def initParamAp():
 	outputdir = os.getcwd()+'/AnnoPeaks_out'

@@ -15,7 +15,7 @@
 
 import os
 import sys
-from print_message import usageSm, welcomeSm, parametersSm, running
+from print_message import usageSm, welcomeSm, parametersSm, running, goodbyeCp
 from set_default import initParamSm, createOdir
 from get_opt import readOptSm
 from check import checkRequiredSm
@@ -24,6 +24,7 @@ from motif import motifDeNovo, motifFull, scanSeqMotif
 from genereFile import createBackground, createScoreFile
 from sorting import sortScoreFile
 from calculROC import scoreAUC
+from plot import plotRocCurve
 
 
 def mainSm(argv):
@@ -70,5 +71,9 @@ def mainSm(argv):
 	print "Step8: Calculate AUC for motif enrichment..."
 	scoreAUC(scorefile, outputdir)
 	print "Step8: Calculate AUC for motif enrichment achieved..."
+	print "Step9: plotting ROC curve..."
+	plotRocCurve(scorefile, outputdir)
+	print "Step9: plotting ROC curve achieved..."
+	goodbyeCp()
 	print ""
 	return

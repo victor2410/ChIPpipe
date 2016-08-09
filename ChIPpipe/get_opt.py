@@ -148,9 +148,9 @@ def readOptCp(argv, outputdir, selectodir, rep1, rep2, ctrl1, ctrl2, ctrlsup, id
 			prefix = arg
 	return outputdir, selectodir, rep1, rep2, ctrl1, ctrl2, ctrlsup, idr, idrthresh, finalsets, plot, prefix
 
-def readOptCpnr(argv, outputdir, selectodir, bamfile, ctrlfile, thresh, pvalue, qvalue, qc, prefix ):
+def readOptCpnr(argv, outputdir, selectodir, bamfile, ctrlfile, thresh, pvalue, qvalue, qc, prefix , spp):
 	try:                                
-	    opts, args = getopt.getopt(argv, "hf:c:o:pq", ["help", "thresh=", "spp-qual", "name="]) # List of all short and long options possible
+	    opts, args = getopt.getopt(argv, "hf:c:o:pq", ["help", "thresh=", "spp-qual", "name=", "spp-call"]) # List of all short and long options possible
 	except getopt.GetoptError:
 	    usageCpnr()
 	    sys.exit(2)
@@ -177,11 +177,13 @@ def readOptCpnr(argv, outputdir, selectodir, bamfile, ctrlfile, thresh, pvalue, 
 			pvalue = 'OFF' 
 		elif opt == '--thresh': # Perform IDR analysis
 			thresh = arg
-		elif opt == '--spp-qual': # Create final peak sets
+		elif opt == '--spp-qual': # Control read quality with cross correlation before peak calling
 			qc = 'ON'
+		elif opt == '--spp-call': # Call peak on alternative way
+			spp = 'ON'
 		elif opt == '--name': # Prefix to give to output file
 			prefix = arg
-	return  outputdir, selectodir, bamfile, ctrlfile, thresh, pvalue, qvalue, qc, prefix
+	return  outputdir, selectodir, bamfile, ctrlfile, thresh, pvalue, qvalue, qc, prefix, spp
 
 def readOptAp(argv,  outputdir, selectodir, peakfile, annofile, peakcaller, prefix, graph):
 	try:                                

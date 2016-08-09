@@ -80,6 +80,7 @@ def usageCpnr():
 	print "\t-q 	: call peaks based on qvalue threshold (default: OFF)"
 	print "\t--thresh STR	: pvalue threshold for peak calling (ex : 1e-7 ; default = 1e-3)"
 	print "\t--spp-qual	: Cross-correlation analysis performed by spp before calling peaks (default: OFF)"
+	print "\t--spp-call	: Call peaks with an alternative method based on IDR analysis (in test)"
 	print "\t--name NAME : prefix to give to output files (default is CallPeaks_macs)"
 
 def usageAp():
@@ -294,7 +295,7 @@ def parametersCp(outputdir, selectodir, rep1, rep2, ctrl1, ctrl2, ctrlsup, idr, 
 	print "\tCreating final set of peaks: "+finalsets
 	print "\tPlotting IDR results: "+plot
 
-def parametersCpnr(outputdir, bamfile, ctrlfile, thresh, pvalue, qvalue, qc, prefix):
+def parametersCpnr(outputdir, bamfile, ctrlfile, thresh, pvalue, qvalue, qc, prefix, spp):
 	print ""
 	print "\t################################"
 	print "\t# PARAMETERS USED FOR THIS RUN #"
@@ -304,13 +305,17 @@ def parametersCpnr(outputdir, bamfile, ctrlfile, thresh, pvalue, qvalue, qc, pre
 	print "\tbam file Control: "+ctrlfile
 	print "\toutput directory: "+outputdir
 	print "\tprefix name to give to output files: "+prefix
-	print "\tCross-correlation analysis before calling peaks (performed by spp): "+qc
-	if pvalue == 'ON':
-		print "\tpeakcalling based on p-value"
-		print "\tp-value threshold fo peakCalling: "+thresh
+	if spp == 'OFF':
+		print "\tCross-correlation analysis before calling peaks (performed by spp): "+qc
+		if pvalue == 'ON':
+			print "\tpeakcalling based on p-value"
+			print "\tp-value threshold fo peakCalling: "+thresh
+		else:
+			print "\tpeakcalling based on q-value"
+			print "\tq-value threshold fo peakCalling: "+thresh
 	else:
-		print "\tpeakcalling based on q-value"
-		print "\tq-value threshold fo peakCalling: "+thresh
+		print "\tCall peaks based on adaptated IDR analysis"
+		print "\twarnings : this option is not validated for moment, still in test"
 
 def parametersAp(outputdir, peakfile, annofile, peakcaller, prefix):
 	print ""
