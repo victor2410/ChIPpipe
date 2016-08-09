@@ -49,49 +49,42 @@ This pipeline is implemented in python.
 ## Required tools
 
 
-To run this pipeline, these tools are required :
-fastqc (v0.10.1), required for trimQual
-from shell terminal:
+#####To run this pipeline, these tools are required :
+*fastqc (v0.10.1), required for trimQual, from shell terminal:
 ```
 sudo apt-get install fastqc
 ```
-Trimmomatic (v0.35) required for trimQual
-present in the folder Scripts
-bowtie2 (v2.1.0), required for ChIPalign
-from shell terminal:
+*Trimmomatic (v0.35) required for trimQual, present in the folder Scripts
+*bowtie2 (v2.1.0), required for ChIPalign, from shell terminal:
 ```
 sudo apt-get install bowtie2
 ```
-samtools (v1.3.1), required for ChIPalign, CallPeaks and CallPeaks_norep
-from shell terminal:
+*samtools (v1.3.1), required for ChIPalign, CallPeaks and CallPeaks_norep, from shell terminal:
 ```
 sudo apt-get install samtools
 ```
-picard tools (v1.95), required for ChIPalign
-from shell terminal:
+*picard tools (v1.95), required for ChIPalign, from shell terminal:
 ```
 sudo apt-get install picard-tools
 ```
-spp (v1.10.1), required for CallPeaks and CallPeaks_norep
-from shell terminal:
+*spp (v1.10.1), required for CallPeaks and CallPeaks_norep, from shell terminal:
 ```
 cd path/to/ChIPpipe/Scripts
 R CMD INSTALL spp_1.10.1.tar.gz
 ```
-macs2 (v2.1.1), required for CallPeaks_norep
-from shell terminal:
+*macs2 (v2.1.1), required for CallPeaks_norep, from shell terminal:
 ```
 sudo apt-get install macs2
 ```
-python (<=v2.7), required for all
-R (v3.0.2), required for CallPeaks and CallPeaks_norep
-from shell terminal:
+*python (<=v2.7), required for all
+*R (v3.0.2), required for CallPeaks and CallPeaks_norep, from shell terminal:
 ```
 sudo apt-get install r-base
 sudo apt-get install r-base-core
 ```
-All .r and .R scripts required are present in the folder Scripts
 
+
+All .r and .R scripts required are present in the folder Scripts
 For fastqc, bowtie2, samtools, picard-tools, macs2, python and R, these tools must be accessible in your $PATH environment variable.
 
 
